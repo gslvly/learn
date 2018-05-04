@@ -86,3 +86,5 @@ mongose
 	验证
 	  User.pre('save', func)
 		User.path('keypath').validate(function(value))
+
+	聚合

@@ -1,41 +1,41 @@
-½âÑ¹
+è§£å‹
 $ xz -d ***.tar.xz
 $ tar -xvf ***.tar
 
-ÈíÁ¬½Ó
+è½¯è¿æ¥
    ln -s /opt/node-v4.4.4-linux-x64/bin/node /usr/local/bin/node 
 
 
 
-°´³ÌĞò²é¶Ë¿Ú£ºnetstat -atunp
-°´¶Ë¿Ú²é³ÌĞò£ºlsof -i:port
+æŒ‰ç¨‹åºæŸ¥ç«¯å£ï¼šnetstat -atunp
+æŒ‰ç«¯å£æŸ¥ç¨‹åºï¼šlsof -i:port
 
 
 
 
 
-window ´«ËÍÎÄ¼ş
- ×ÓÏµÍ³ /mnt ÎªµçÄÔ 
- scp t.txt dragon@192.168.253.137:~/  ´«ÎÄ¼ş¼Ğ ¼Ó²ÎÊı -r
+window ä¼ é€æ–‡ä»¶
+ å­ç³»ç»Ÿ /mnt ä¸ºç”µè„‘ 
+ scp t.txt dragon@192.168.253.137:~/  ä¼ æ–‡ä»¶å¤¹ åŠ å‚æ•° -r
  scp -i sshkeyfile -r dir root/ip:~/path 
 
-ps ÃüÁî
+ps å‘½ä»¤
 
- -u °´ÓÃ»§¹ıÂË
- -a È«²¿
- -x Ã»ÓĞÖÕ¶Ë¿ØÖÆ
+ -u æŒ‰ç”¨æˆ·è¿‡æ»¤
+ -a å…¨éƒ¨
+ -x æ²¡æœ‰ç»ˆç«¯æ§åˆ¶
  -aux
  --sort 
-   -pmem ÄÚ´æ
+   -pmem å†…å­˜
    -pcup cup
 
--C °´½ø³ÌÃû×Ö²é
--f ÏÔÊ¾ÏêÏ¸ÄÚÈİ
--L °´Ïß³Ì£¨pid£©²é
--U °´ÕÕÓÃ»§²é
+-C æŒ‰è¿›ç¨‹åå­—æŸ¥
+-f æ˜¾ç¤ºè¯¦ç»†å†…å®¹
+-L æŒ‰çº¿ç¨‹ï¼ˆpidï¼‰æŸ¥
+-U æŒ‰ç…§ç”¨æˆ·æŸ¥
 
 
 
 
-watch -n 1 ¡®ps -aux --sort -pmem,pcpu¡¯ ½áºÏcpu ºÍ ÄÚ´æ²é½ø³Ì£¬Ã¿ÃëÒ»´ÎË¢ĞÂ¡£
+watch -n 1 â€˜ps -aux --sort -pmem,pcpuâ€™ ç»“åˆcpu å’Œ å†…å­˜æŸ¥è¿›ç¨‹ï¼Œæ¯ç§’ä¸€æ¬¡åˆ·æ–°ã€‚
 

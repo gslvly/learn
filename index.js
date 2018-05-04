@@ -17,7 +17,7 @@ const Schema1 = new mongoose.Schema({
 
 
 const User = mongoose.model('test', Schema1)
-User.update({}, {$push:{arr: 'fgeer3'}}).then(console.log)
+User.update({}, {$addToSet:{arr: 'fgeer333'}}).then(console.log)
 User.find({arr: {$in:['fgeer3']}}).then(console.log)
 
 

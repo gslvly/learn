@@ -2,19 +2,19 @@ fs
 
 C:\node\index.js
 
-__dirname: ���Ƿ��ر�ִ�е� js �����ļ��еľ���·�� C:\node
+__dirname: 总是返回被执行的 js 所在文件夹的绝对路径 C:\node
 
-__filename: ���Ƿ��ر�ִ�е� js �ľ���·�� C:\node\index.js
+__filename: 总是返回被执行的 js 的绝对路径 C:\node\index.js
 
-process.cwd(): ���Ƿ������� node ����ʱ���ڵ��ļ��еľ���·��  node index.js �� C:\node��    node node/index.js �� C:\
+process.cwd(): 总是返回运行 node 命令时所在的文件夹的绝对路径  node index.js → C:\node；    node node/index.js → C:\
 
-./: �� process.cwd() һ�������� node ����ʱ���ڵ��ļ��еľ���·�� ��ͬ
+./: 跟 process.cwd() 一样，返回 node 命令时所在的文件夹的绝对路径 上同
 
 require()
-./ ��__dirname һ��
+./ 跟__dirname 一样
 
 
 
-require ���� 
-   �ظ�����ʱ����ֱ�Ӵӻ������ã�������ִ���ļ���ֱ��������
-   ����ļ�a require(b) b�ļ���require(a) ��˳��ִ��a���룬������ִ��b�ļ�����a�ļ���û��export�����Կ���b�ļ��ò���a��ֵ
+require 加载 
+   重复加载时，会直接从缓存中拿，不在重执行文件，直接跳过。
+   入口文件a require(b) b文件中require(a) 按顺序执行a代码，可能先执行b文件，但a文件还没有export，所以可能b文件拿不到a的值
