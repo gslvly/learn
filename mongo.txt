@@ -1,0 +1,48 @@
+命令行
+  use 切换表
+  mongodump 备份全部数据, 需启动mongod
+  mongorestore 回复数据，需启动mongod
+  db.createCollection(name, {capped: true, size: 1000}) 创建表 固定大小的表，数据太多会覆盖之前的
+  db.collection.drop() 删除数据
+  db.aa 表 aa 
+    .count({}) 相当于find({}).count()
+    .insert insertOne insertMany 插入数据 
+    .update(query,{$set: {newdata}, upsert, multi}) 更新数据，不存在是否删除，是否更新多条
+    .remove({data}) 删除
+    .find({data}, {name: 0}) 查找：  name 不返回， 1为返回。
+        .limit(Number)  查询条数
+        .skip(Number)   忽略前xx条
+    .sort({age: -1}) 1升序，-1 降序
+    .ensureIndex({"title":1, 'age': 1}, {background: true}) 建立索引， 会提设置了索引字段的搜索速度（按title,age搜索）。background 等需要查表
+    .aggregate([{$group : {_id : "$by_user", num_tutorial : {$sum : 1}}}]) 聚合后的result 是个数组，_id 使用by_user字段的值，num_tutorial， num_tutorial相似的id 相加条数
+
+
+
+查询语句 参数
+   {$or:[{data}, {data2}]} 或者
+   key: {$lt: 50}   $lt小于  $gte 大于等于 $lte 小于等于  $gt 大于
+   key: {$type: 2}  2 String  $type值需查表 
+
+
+   
+原子操作命令
+ $set 用来指定一个键并更新键值，若键不存在并创建。
+ $unset 用来删除一个键。
+ $inc 可以对文档的某个值为数字型（只能为满足要求的数字）的键进行增减的操作。 $inc:{age: -1} 年龄-1
+ $push { $push : { field : value }  把value追加到field里面去，field一定要是数组类型才行，如果field不存在，会新增一个数组类型加进去
+ $pushAll { $pushAll : { field : value_array } } 同$push,只是一次可以追加多个值到一个数组字段内。
+ $pull { $pull : { field : _value } } 从数组field内删除一个等于value值。
+ $addToSet 增加一个值到数组内，而且只有当这个值不在数组内才增加。
+ $pop { $pop : { field : 1 } } 删除数组的第一个或最后一个元素
+ $rename { $rename : { old_field_name : new_field_name } }
+ 
+
+
+ ObjectId("5aeab5907ab3603042ee5275").getTimestamp() 获取创建时间
+ new ObjectId("5aeab5907ab3603042ee5275").str 返回字符串
+
+
+
+mongose
+
+

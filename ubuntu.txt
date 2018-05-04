@@ -1,0 +1,41 @@
+解压
+$ xz -d ***.tar.xz
+$ tar -xvf ***.tar
+
+软连接
+   ln -s /opt/node-v4.4.4-linux-x64/bin/node /usr/local/bin/node 
+
+
+
+按程序查端口：netstat -atunp
+按端口查程序：lsof -i:port
+
+
+
+
+
+window 传送文件
+ 子系统 /mnt 为电脑 
+ scp t.txt dragon@192.168.253.137:~/  传文件夹 加参数 -r
+ scp -i sshkeyfile -r dir root/ip:~/path 
+
+ps 命令
+
+ -u 按用户过滤
+ -a 全部
+ -x 没有终端控制
+ -aux
+ --sort 
+   -pmem 内存
+   -pcup cup
+
+-C 按进程名字查
+-f 显示详细内容
+-L 按线程（pid）查
+-U 按照用户查
+
+
+
+
+watch -n 1 ‘ps -aux --sort -pmem,pcpu’ 结合cpu 和 内存查进程，每秒一次刷新。
+
