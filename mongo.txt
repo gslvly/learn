@@ -22,7 +22,7 @@
    {$or:[{data}, {data2}]} 或者
    key: {$lt: 50}   $lt小于  $gte 大于等于 $lte 小于等于  $gt 大于
    key: {$type: 2}  2 String  $type值需查表 
-
+	 key: {$in:['xxx', 'xx']}
 
    
 原子操作命令
@@ -45,4 +45,44 @@
 
 mongose
 
+	链接 
+		mongoose.connect(dbConf.url)
+		mongoose
+		.connection
+		.on('error', console.log)
+		.once('open', _ => console.log(`success: db connect to ${dbConf.url}`.blue))
+	模板
+		Schema = new mongoose.Schema({
+			account: { type: String, required: true },
+			password: { type: String, required: true },
+			nickName: { type: String, default: '' },
+			headUrl: { type: String, default: '' },
+			age: { type: Number }
+		})
+		// schema 也可是json  但这样写可以在schema上添加methods.func
+		User = mongoose.model('User', Schema)
 
+	子文档
+	  parentSchema = new mongoose.Schema({child: childSchema }) 子文档会有_id
+  
+
+	添加数据
+		let user = new User({ account: 'gs', password: 'password3' })
+		user.account = 'ddd'
+		user.save()
+
+		或者： User.create({account: 'gs',password: 'pass'})
+	
+	修改数据
+	  User.update()
+		User.findByIdAndUpdate(id, {$set:{data}})
+
+	查询数据
+	  find(query, '要显示的字段 xx xx', function(err, data)) 查询出来的字段如果没有，则空着，不会改变查出来的条数
+		上面相当于
+		find(query).select('xx, xx').then()
+
+
+	验证
+	  User.pre('save', func)
+		User.path('keypath').validate(function(value))
