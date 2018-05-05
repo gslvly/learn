@@ -1,0 +1,57 @@
+koa-router
+
+router = new Router({prefix: '/users'}) // 所有router的地址前加上/users
+router.get("/", function(ctx,next){}, callback)
+      .post()
+ctx.params : 将参数变换为对象。
+router.routes 路由中间件函数，
+router.use([path], middleware) ? Router
+router.redirect('/login', 'sign-in');
+ctx.status = 301;
+
+router.url('user', { id: 3 });
+// => "/users/3" 
+
+router.get() 里面
+ctx.path:  	/pic/fs
+ctx.url:   	/pic/fs/?name=gs
+ctx.origin : 	 http://127.0.0.1
+ctx.search: 	?name=gs
+ctx.accepts(types) 
+ctx.params.id    可以找到id的值 get如下：get('/pic/:id', fn) 
+ctx.query	 可以找到get(/pic, {params: {name:'gs'}） params中的数据，或者直接在url地址栏输入的查询数据。
+
+
+router.post()
+
+前端设置：
+Content-Type： application/x-www-form-urlencoded  title=test&sub%5B%5D=1&sub%5B%5D=2&sub%5B%5D=3   // 表单提交默认
+	       application/json;charset=utf-8     {"title":"test","sub":[1,2,3]}
+               multipart/form-data		  :上传文件
+
+后端设置 
+router.use(bodyparser({
+ extendTypes: {
+    json: ['application/x-javascript', 'application/x-www-form-urlencoded'] // will parse application/x-javascript type body as a JSON string 
+ }
+}))
+获取ajax数据
+post， put：
+	ctx.request.body post对象  
+del，get：
+	ctx.request.query  
+
+cookies
+ctx.cookies.set(name, value, options)
+ctx.cookies.get(name,options)
+session
+
+cookie 与 session 区别
+
+cookie  发给后台，后台发给前台都是明码，大小限制。
+session 被后台缓存，下发乱码，根据乱码比对，确定id。无大小限制，但依赖cookie，禁用cookie，session也不能用。
+
+常用插件
+koa-router   app.use(router.routes())
+koa2-cors    app.use(cors())
+koa-bodyparser  router.use(bodyparser())

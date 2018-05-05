@@ -1,0 +1,358 @@
+代码放在：title下，有script放在script中。
+代码中间用；或者换行。
+
+script:
+<script scr=""> 引入外js文件时标签中不能写东西,要写东西需要重新建一个script标签。
+Async： 同时下载外部js文件，下载完成后立即执行。<script scr="" async="async"></script>
+defer：同时下载外部js文件，下载完成后最后执行。
+Sync： 依次运行程序。
+DOMContentLoaded ：DOM加载事件，可以加载js。等标签加载完，js文档就执行了。onload是标签，视屏都加载完再执行。
+
+javascript预解析：遇到<script>标签，先将标签内所有的var和function和参数提前（函数在最前面），但赋值不回提前。比如var a=8→var a：；a=8，然后再将fuction标签内的var a提前。全局变量与局部变量都有a，他们2个在内存中占用2个位置，是不相同的。function中没有定义a，但关于a的函数，会先在当前作用域下寻找a，若没有找到，会在全局变量中找。
+		就算写在function中的变量，如果未用var 则变为全局变量。var a=b=c=9，b、c全部变量，a局部变量。
+
+
+概念：
+	1、作用域：作用域就是变量和函数的可访问范围，只有function有作用域。
+	1、作用域链：function多层次嵌套function时，无论那一层，都只有在其父级层才能直接调用，先运行完毕外层函数，运行内存函数。子级中能调用变量先从自身作用域找，没找到往外层找。构造函数的原型方法也会先找构造函数内部的变量，之后再找外部的变量。
+变量类型：
+	分为基本类型，引用类型。
+	堆：储存数据
+	栈：储存地址及基本数据类型及其值（a：10）分为标识区和值区。
+	基本类型：在栈中开辟空间存储储存。一个变量只占用一个空间，改变值时空间不变，只更换值。当赋值a=b时，会将a的值复制一份到b的空间。
+		基本包装类型：String Number Boolean。可以调用方法。"sdf".substring(2) =="f" 但是不是对象，不能加属性与方法。
+	引用类型：在堆中开辟储存空间，储存数据，在栈中储存索引地址。当a=b时，b复制一份地址给a，并将数据存在堆中，共用一份数据。当数据发生变化时，a也将发生变化（当然，发生变化）。	
+	基本类型作为函数参数：基本类型值会复制一份作为形参的值，都储存在栈中。不可用函数修改其值。
+	引用类型作为函数参数：复杂类型在栈中的地址复制一份作为函数形参，可用函数修改其值。如果一个对象作为函数参数，若函数用形参另外新建了一个对象，形参地址会发生变化。
+	一个复杂类型可以有多个地址，但一个地址只能对应一个复杂类型。
+	字符串:用“”包裹。语言中占用“”则用单引号。若3层包裹用转译符：在"前面加\；
+		\n：换行 alert（"\"谁\""）输出"谁"
+		\t：tab
+		\b：空格
+		\r：回车
+		\\:斜杠
+		\':单引号
+		\""：双引号
+		字符串被赋值后会占用内存空间，重新赋值会占用其他空间,但其他字符串与原已被重新赋值的字符串值原始值相同时，不会占用新空间。
+		字符串方法：var b="abcdefgh"  方法与数组很像。
+			b.charAt(n):第n个位置的字符 b
+			b[1]:上同
+			b.charCodeAt（4）：e 的acssii码。
+			b.concat("is","gs"):===b+"is"+"gs"
+			b.slice(4,6):f
+			b.indexOf("c",2)：从第2个位置开始搜索c，不写2默认0，返回索引。没有找到返回-1
+			b.lastindexOf("c"，3):从第3个位置开始往回搜索c，返回索引。
+			b.toLowerCase（）：小写
+			b.toUpperCase（）：大写
+			b.match("L")：查找L,找到返回L，没找到返回null。
+			b.search("L"):找到L的位置，返回索引。
+			b.split(" ")：以空格分割，组成数组。返回数组。
+			b.substring(1,3)获取[1,3）的字符串 最常用。
+			b.replace('d',@):将a中第一个a替换为@
+			
+			其他方法见手册。
+	数值类型 ：（NaN）
+		浮点数：判断是否相等时要换成整数。0.07*100不等于7
+		var=3e10=3*10^10次方。		
+		Infinity：无穷大。
+		Number.MAX_VALUE:最大值
+		Number.MIN_VALUE:最小值
+		NaN：not a number ：数值与字符串相减输出，属于NaN类型。
+		isNaN：判断是不是一个非数字,注意大小写不能变。数字：false，非数字：ture,与typeof 使用相同。
+		.toFixed（2）：保留2位小数并转换为字符串。
+		.toExponential():科学计数法，并转换字符串。
+		.toPrecision（）：参数为有效数字。多余用科学计数法。
+	变量：var a  a不能是关键字，备胎 只能用:$ 、_ 、字母、数字组成。
+		在fuction中声明的变量是局部变量。
+		不用var声明的变量是全局变量，即使在fuction中，它会一直保存。
+	布尔：boolean 比较大小。boolean（a）转换为布尔类型。其值只有ture false。c=a>b 如果正确则c输出ture（1）。0，false，undifined（就是undifined类型），NaN（number）,null（object）(var a = ""; if (a =="" ||undefined || null) {  aler("数据为空"); }else{alert("数据正确");};)为false，其他变量全部为true。if（false）{}：不执行。var a ；if（a）{}：不执行，a未定义，或者var a=undifined，也不执行。
+	     	==:是否相等 判断的仅仅是数据的内容，不判断类型。
+	    	===:是否全等。判断内容与类型。
+		！=不等于。不判断类型，判断内容。
+		！== 只要内容或类型不等 返回ture
+		
+	未定义：undefined：变量未被赋值，则输出undefined。
+
+
+	this:当做方法调用时代表该方法的对象，当做call，apply 或者构造函数调用，都代表该对象，但是当做函数调用时，其就不再代表对象了。比如a为对象，a.say（）为方法调用，但a.say()里面调用就不再是a对象了,第二次调用时把它当为函数来调用的。如果b = a.say b再调用，也不是a对象，这只是引用，被调用的对象还是window
+	object:对象 。具有属性与方法
+		创建方法：
+			一、直接创建：1、var a = new Object（） 2、var a= Object（）  3、var a={} （适合少量的）
+			二、通过函数创建。详见例
+		调用对象属性（方法）：a.属性 、a.方法。a["属性"]：使用数组的形式，看作是数组的索引为"属性"。
+			调用函数时，字符串传进去时一定要加""。
+		加属性：a.name="xm"，只要创建了对象，在对象（a）后面加一个.（点）再加上属性名字，就跟对象联系起来了。如果不设置a为对象，直接用var a.name=“d”，系统会认为其是变量，但命名规则错误，那就会出错。
+		加方法：a.attack=function（name）{console.log(this.name+"攻击"+name)}其中this.name=a.name，只能是当前对象的方法中才能代用，并不是当前函数。name是敌人的name。
+		方法与函数：方法用对象调用，函数通过函数调用。
+		构造函数：自己构造一个对象（没有名字），并且返回到一个函数。实例化：储存属性及方法，方法不会返回任何值，当调用方法时才会返回值。
+			1、内存开辟空间，储存新创建的对象new Object（），
+			2、会把this设置为当前对象。
+			3、执行函数内部的代码，设置对象的属性和方法。
+			4、返回新创建的对象。
+		instanceof :关键字，是否是谁的对象。返回boolean。console.log(a instanceof Array),a是不是Array（数组）的对象。如果a是数组，返回true。
+		字面量创建对象：
+			创建方式1、var a={name："xjj",age：18，girlfriends:[ts1,ts2]}:键：值。值可以是任何类型。中括号代表数组。用逗号隔开。
+			创建方式2、var a={"name"："xjj","age"：18}，json方式
+		删除属性：delete（a.name）或者不加括号。
+		对象属性修改：
+			对象的属性包括实例属性及原型属性。若实例中存在，则修改实例中的属性。引用类型存在于原型中，修改其值后会将原型一并修改。若实例及原型中都有，则不会修改原型中的引用类型值。若为基本类型，且存在于原型中，则不会被修改，a.name="gs"，会覆盖掉原型中的name值，并且存在于实例中。
+		遍历对象属性的方法：for（var i in a）{alert(i)}:遍历属性。for（var i in a）{console.log(a[i])}：遍历属性及其值。
+			字面量创建原型：Box.Prototype={}：box必须为对象。
+		对象的原型：function A(){};A.prototype.name="this.name"；var b=new A（）；A.prototype：访问A对象（构造函数）的原型对象。
+			constructor：属性用于返回创建该对象的函数，也就是构造函数。是个地址。A.prototype.constructor===a.consturctor。其存在于函数原型和对象实例中。
+			关系：A.prototype.constructor===A   而A.constructor===Fucntion 因为所有函数都是Fucntion 的实例化。
+			__ptoto__:或者叫做[[prototype]]，就是实例对原型对象的引用，就是原型地址。这个是实例对象具有的属性。
+			Object.Prototypeof（a）：获取实例化对象a的的原型地址。
+			关系：a.__proto__===Object.prototypeof（a）===A.prototype。
+		对象实例的方法：
+			.hasOwnProperty（）:从Object继承而来，a.hasOwnproperty("name"):看实例a中是否有name属性，返回boolean值。如果不存在或者只存在于原型中就是false。
+			.hasPropotypeProperty():同上，是否存在于原型中，如果被实例属性覆盖了，会返回false。
+			in  ："name" in a：a对象能够访问的属性中是否存在name属性，返回boolean值。就是说实例中或者原型中有没有"name"属性。
+
+
+		继承:对象的原型引用等于另一个原型的实例引用。所有对象的默认原型都是Object实例，因此继承Object原型中的方法。
+		原型链：
+			要求：原型链是指A对象需要获取B对象的属性和方法，但A对象可以扩充方法及属性。一般做法将超类型实例化后的地址给子类型的原型。不能使子类型的原型constructor属性发生变化。原型中内容不能与实例中内容重复。
+			最好的实现方法：由寄生组合式继承实现。
+			
+		ECMAscript内置对象:Global：web端使用window实例化；Math
+		   Global内置属性与方法：
+			URI方法：将地址转换为浏览器看得懂的编码。比如有中文的地址。
+				encodeURI("df")：部分符号不转换
+				decodeURI（""）:解码
+				encodeURIComponent("dfas__")符号也全部转换。	
+				decodeURIComponent("")解码 上面对应。
+			eval方法：使字符串变为javascript代码
+				eval（"var a= function(){}"）:本来""里面是字符串，使用eval方法，使其变为了可以使用的函数。
+			属性：undefined、NaN、Object、Array、Function等。
+		   Math对象
+			Math.pow（a，b）a的b次方。注意大小写
+			Math.sqrt(n):开方。
+			Math.round（b）四舍五入
+			Math.abs*(（）绝对值
+			Math.ceil：向上取整。
+			Math.foor：向下取整。找各位，十位，百位，千位用，先取余，再除，再向下取整。取余去除高位数，除去除低位数。
+			Math.max(a,b,c)：取最大数
+			Math.min(a,b,c)：取最小数
+			Math.random():0~1随机数不包括0和1
+			Math.PI:π
+
+
+	Array:数组（也是object类型，可以用其字面量方式赋值。也可以在外面用b.name=“gs”赋值给它，但打印数组（alert（b））时计算机只会找出索引为数字的，所以属性只能单独调用（b.name），length不增加。
+		创建方法：
+			var a= new Array(4)：设置长度为4,但数组长度不是固定的。；a=new Array（4,3,3,4）：a[0]=4...	a[0]="badf"
+			字面量创建：	var b=["zs","js"]第一个为b[0]。
+					var b=[{name:"gs"，age:19},new Object，["asdf",23] 其中：b[0].name=gs b[2][1]=asdf 
+		array.length:数组一共有几个数字。特点：能够储存任意类型。使用前一定要定义：var a=[],不可用大写Array。直接定义a[4]=0，如果没有前面的数组，是不合法的。
+		数组自带方法：b.toString（）（或者默认alert）：将数组用逗号隔开，变成字符串模式。
+			      b.join（"|"）:将数组转换为字符串，并用|将格个值隔开。
+			栈方法：先进先出：
+			      b.push（"sdf"，"df"）:在末尾添加2个元素，会返回最新长度。
+			      b.pop（）：移除最后一条数据。
+			队列方法：
+			      b.shift():移除开头元素。
+			      b.unshift（）：在前端添加元素。
+			排序方法：
+			      b.reverse（）:逆向排序。
+			      b.sort():如果没有使用参数，按字符串首字母从小到大排序，如果要比较数字得传一个参数（函数 sortNumber不调用），function sortNumber（{return a-b}）
+			数组处理方法：
+				1、box2=box.concat（"sd"）:在原有数组box最后一个元素后面添加一个元素“sd”，变为新的数组box2，不修改box值。
+				2、box2=box.slice(2,5):获取[2，5)的元素组成新的数组(下标）（2）则从第三个元素到最后一个元素。不修改box值
+				3、box2=box.splice(2,5，"sdf","asdf"):从第3个元素取5个元素作为新数组。并将sdf，asdf替换掉第三个元素开始的5个元素,返回给原数组。
+		迭代方法：所有fn的参数为（value，index）
+			arr.map（fn，obj）,对每一个元素执行一次函数，函数的返回值组成新的数组。第二个参数传进去，fn的this变为obj的this
+			arr.filter(fn),对每一个元素执行函数，如果fn的返回值为true，将元素组成新的数组。上面新数组是将返回值，这儿新数组是元素。
+			arr.forEch(fn),对每个元素进行fn，没有返回值。
+			arr.every(fn),整体返回boolean值，fn返回true或者false，全部返回true则整体为true。
+			arr.some(fn),与上面相比，只要一个返回true，整体返回true。
+			
+			
+		
+		日期对象：Date（）
+			Date.parse():接收字符串时间，转换为毫秒数，通常为"月/日/年" 、"英文月 日 年 " "英文星期几 英文月 日 年 时：分：秒"
+			box=new Date（"6/13/2011"）直接传入，Date.parse（）后台调用。
+			Date.UTC（2015,12,29,23,41,34，23）变为世界统一标准时间。不分区
+			new Date(2015,12,29,23,41,34，23)变为当前地点时间。
+			日期方法：
+				.toString()：也是默认，
+				.tolocaleString（）：返回我们常见的时间格式。
+				.valueOf（）:返回毫秒数。
+				获取想要的时间：（如果想获取UTC时间，则在get或者set后面加上UTC）
+					.gettime（）：获取毫秒	
+					.getFullYear（）：获取年。
+					.setdate（）：设置日期。其他没设置的会默认填上数字，若是今天，则只设置日期，其他的都不会变，若括号内为40，则自动往月份上加。
+					.getMonth（）：获取月。月份要＋1 ,此处不需要返回值，直接写date.getMonth()，然后打印出date就可以了，不需要date=date.getMonth()
+					.getDay():获取星期几。
+					hours:时 Minute:分 Seconds:秒 
+					.getTimezoneOffset（）：返回本地时间与UTC的时间相差分钟数差。
+				一般用法：
+					var box=new Date();
+					box=box.getFullYear()+"-"+box.getMonth()+"-"+box.getDate()+" "+box.getHours()+" :"+box.getMinutes()+":"+box.getSeconds()
+					
+
+		正则表达式：object类型
+			创建：var box=new RegExp（"df"，"igm"）或者用字面量var box=/df/igm 其中i：忽略大小写；g：全局匹配，匹配后会继续匹配，但原字符串换行后不再匹配。；m：多行匹配，必须与g配合用。括号里的全是字符串。
+			正则测试：
+				/str/ig.test("strdfae")：返回boolean；测试strdfae中字符串是否包含str。如果包含返回true。
+				/str/ig.exec（"sTradrts"）:在sTradrts中找到包含前面的字符串，找到后不在寻找后面的字符。返回找到的字符串，没有返回null，这儿返回sTr。
+							分组返回：如果正则中使用分组（），则返回数组，由匹配结果作为a[0],a[1]=RegExp（$1）。如果不想捕获分组内容，则在括号内最前面加？：（?:）
+				使用字符串方法匹配：字符串.…
+					"box1box2".match(/box/ig）:全局匹配，会返回2个box，组成数组或null。
+					"xox1box2".search(/box/ig）：在字符串中寻找box，找到后返回其位置。位置为引号右边开始，一个→一个位置。返回数字类型，没找到返回-1
+					"xox1box2".replace(/box/ig,"eee"):用eee替换掉所有与正则匹配到的字符串，返回替换后的字符串。不会改变原字符串。
+					"xox1box2".split（/x/ig）：将正则表达式中的x替换为逗号，并将字符串转换为数组。此处为长度为4.
+				元字符：（在正则中表示特殊含义的字符）	用法：/d..df/ig.test（"diedf"）返回true；"diedf".match(/d..df/ig):返回diedf。
+				  	 . 查找单个字符，除了换行和行结束符。使用 a.*b 表示a与最后一个b组成的值。
+					\w 查找单词字符。含_ 数字、字母。 等价于[A-Za-z0-9_]
+					\W 查找非单词字符。 
+					\d 查找数字。 
+					\D 查找非数字字符。 
+					\s 查找空白字符。 
+					\S 查找非空白字符。 
+					\b 匹配单词边界。 
+					\B 匹配非单词边界。 
+					\0 查找 NUL 字符。 
+					\n 查找换行符。 
+					\f 查找换页符。 
+					\r 查找回车符。 
+					\t 查找制表符。 
+					\v 查找垂直制表符。 
+					\xxx 查找以八进制数 xxx 规定的字符。 
+					\xdd 查找以十六进制数 dd 规定的字符。 
+					\uxxxx 查找以十六进制数 xxxx 规定的 Unicode 字符。 
+
+				量词：匹配多少个？
+					n* 匹配任何包含零个或多个 n 的字符串。 
+					n? 匹配任何包含零个或一个 n 的字符串。 
+					n{3} 匹配包含 3 个 n 的序列的字符串。 
+					n{2,4} 匹配包含 2 到 4 个 n，包含2和4， 的序列的字符串。 
+					n{2,} 匹配包含至少 2个 n 的序列的字符串。 
+					n$ 匹配任何结尾为 n 的字符串。 
+					^n 匹配任何开头为 n 的字符串。 一般用法：/^dfedf$/ig.test("dfffffedf")
+					(?=n) 匹配任何其后紧接指定字符串 n 的字符串。注意：n自身并不会返回，但如果不加n，前面的也不会返回。 
+					(?!n) 匹配任何其后没有紧接指定字符串 n 的字符串。 
+				查找范围：表示匹配一个字符。 
+					[abc] 查找方括号之间的任何字符。 
+					[^abc] 查找任何不在方括号之间的字符。 
+					[0-9] 查找任何从 0 至 9 的数字。 
+					[a-z] 查找任何从小写 a 到小写 z 的字符。 
+					[A-Z] 查找任何从大写 A 到大写 Z 的字符。 
+					[A-z] 查找任何从大写 A 到小写 z 的字符。 
+					[adgk] 查找给定集合内的任何字符。 
+					[a-zA-Z0-9]：复合范围，不加符号直接写：字母和0-9数字。
+					[^a-zA-Z0-9]:^符号为非。 
+					(red|blue|green) 查找任何指定的选项。 要用分组包起来。
+				分组：（）括起来了表示一组字符，相当于一个字符。此字符匹配的值会被 RegExp.$1~9检索到，数字代表第几个括号内匹配到的。
+					/(gle){2-4}$/ig.test("glegleglegle"):ture.
+					交换：
+						var b=/(.*)\s(.*)\s(.*)/ig
+						var a="sbd sbd aBde"
+						document.write(a.replace(b,"$3 $2 $1"))
+				惰性：？  ：3（.*）3  匹配到第一个3及第二个3结束。第二种方法3（[^3].*）3  让别人先取，自己后取。
+				贪婪：+   ：3（.*+）3 匹配到第一个3及最后一个3结束。
+				匹配特殊字符：在特殊字符前加\ 。 例：/\[\]/ :对[]进行匹配
+								
+		函数 ：	少使用闭包，多使用私有作用域。
+			闭包：函数包含一个函数，但内部函数会拿到所有外层级函数的作用域变量，即使外层函数销毁，外层函数的变量也会存在内存中供内存函数调用。内层函数最好为匿名函数，或者使用后初始化null。b=a（），b（），b=null。不然会造成内存泄漏。
+			模仿块级作用域：通过匿名自调用函数包裹函数。打开浏览器时会执行一次。
+		定义：
+		      	1、function funName(参数1，参数2，……){函数体}
+			2、var funName=function（）：匿名函数，进行预解析后，如果调用代码在此函数前面会报错。可当做参数。
+			3、（function（）{……}）()：自调用函数,只能调用一次。
+			4、var a=new Function（）：不推荐使用。
+		fuction sum(shu1,shu2){ alert(shu1+shu2)} sum(a,b)：输出A+b。
+		fuction sum（a,b）{var  c=a+b return c} sum(a+b) var a=sum(12，13)；alert（a）得25 return：返回值，若缺少，则返回undefined。
+		调用对象作为参数：会将对象的所有属性及方法作为形参。arguments.callee（）：在函数内部代表自身函数。
+		调用：sum.()：sum为函数名字()小括号意为调用，直接的sum代表方法的引用地址。传string时需要f(“df”)。不写形参时，arguments[0]接收到传过来的第1个参数。
+		调用自己：递归，无限循环。
+		返回：用reture，返回后后面的代码不会执行。reture后写上你要求的值。
+		先后：如果两个function 名字相同，后一个会覆盖前一个。程序执行会先调用函数，如果函数名为alert（a），后面的alert（"会调用函数而不直接输出"）
+		回调：a.f（x）,在函数b中使用此函数将获取b函数的x值，并传回给a对象的f函数当做参数。其实就是在b函数中调用a对象的f方法。
+		函数的方法：函数某些时候也可看作对象。其有2个属性：leng和prototype，其中原型包含2个方法call（）、apply（）。
+			a.length:函数的参数个数。
+			函数获取作用域：原型内的方法。
+				b.call(this,x,y):函数b获取全局作用域。x y为b的参数。b函数中的this会获取window的属性。可以不用参数
+				b.applly(a,[x,y]):b函数获取a对象作用域，参数必须为数组，可以直接写arguments代替。b函数中this.name===a.name。只能获取a对象实例的属性，不能获取a对象原型中的信息。
+		
+	
+	
+	数据类型分为两大类：
+		简单数据类型:string number boolean undefined.：存在栈里面的。
+		复杂数据类型：Null，NaN，存在堆里面的。
+
+运算符：符合运算法则 ＝后面的计算式中有重复变量的，会立即赋值。比如a=b/=c+b:b*b/（c*c）
+	+:可连接字符串，“32”+33=3232 “32”-32=0 string+number=string；string+number+number： 按照逻辑运算先后来。
+	-
+	*
+	/：除
+	%:取余 c=13%5 =3
+	a+=b: a=a+b
+	a%=b: a=a%b
+	a++:a+=1 后加；a=a，
+	++a: 先加 a加上后会立即变为a+1，如果后面算式还有a则a=a+1
+	c=a++ + b++=a+b，之后再运算a++ b++ （空格是必须的）var a=1 b=++a + ++a=2+3=5；b=a++ + a++=1+2=3 a=3；
+	c=++a + ++b=a+1+b+1，先运算a++ b++ 在运算a+b
+	&&：（并且）短路运算，如果第一个false，则不会运算后面的值。如果两个值换成布尔类型都是true，则返回第二个值。"asdf"&&"adc"返回adc，undifined&&null返回undifined。
+	||:或 短路运算。"abc"||"bcd",返回abc，"null"||"undefined"返回undifined。常用n1=n1||0
+	！:非
+	运算优先级：()>++、--、！>算数运算>关系运算（>、<=）>相等运算(==、!=)>逻辑运算（！>&&>||）
+	in:判断属性是否在对象中。返回boolean（并非属性值）var o={name:“张三”}；console.log（"name" in o） 返回true。
+	delete：运算符。语法：delete 变量，数组项，对象实例属性。返回值：boolean。删除是否成功。var o={name：“张三”} console.log（delete o.name）删除对象的的name属性。返回true。不会改变数组长度，那一个数变为undefined
+
+语言：
+	alert("")：弹出窗口。alert（“输出”+a）：结果为输出a 其中a为直接量。+起连接符
+	alert（name.length）：获取字符的长度或者name数组的长度。
+	console.log(""):向浏览器的控制台输出一句话，用来进行代码的调试。
+	prompt("")：弹出输入框。给用户提供输入信息的位置。输入为string。var a=prompt（"请输入一个数字"）
+	typeof"abc" 输出：string； typeof 123 输出：number；typeof a=3>4 输出boolen
+	a instanceof Array:a是否是数组，是则返回true，否输出false。
+	
+	三元判断：a>b?操作1：操作2；alert(a>b?a:b)输出大的数。或者用a=a>b?a:b 就是将大的值给a，三目运算为true时只会执行一个语句。可以是函数，不能写return什么
+	if（boolean）{满足输出}； else if（）{} ：（）中必须为boolean值。用比较符或者==""，等。不能写a>b>c或者=（会直接赋值） break跳出。boolean为false，只会不执行后面的一条语句。{}包裹为一条语句。
+	switch（变量）{case “1”：；alert（输出内容）；break ；default:；alert()}如果输入的变量是“1”则输出内容。case“1”后面有冒号。如果不满足，则输出default内容。判断用的是===；可以连续写多个case。每一次判断必须break。
+	while(boolean){ture执行}，false跳出，break跳出整个循环，continue，跳出单次循环。
+	do while :先做再判断。do{}while（条件语句/boolean）
+	for（var i=0；boolean表达式；i++）{ 循环体}：可在内部定义。
+	var a=new Date():获取当前日期。b=a.getDay():获取星期几。返回Number.两个必须联系起来。
+	a.length:获取a的字符串的长度，空格和文字都算一个字符。
+	a.charAt（5）或者a[5]：a的第6个字符串是什么？
+
+	
+
+强制转换：	
+	Number()：将字符类数字转换为数字，但不能将字符串“abc”转换为数字。
+	parsetInt()：字符转换为整数，去掉小数点后的数字或者去掉字符及后面的数字。以字母开头，返回NaN。parseInt("a",16)转换为16进制，输出10.
+	paseFloat（）：转换小数点，去掉字符及后面的数字。全为10进制。
+	.toString()：将内容转换为字符串。var a=18；var a=(3+a).toString(10)，输出"21"。或者a.toString（8）,其中（8）为转换为8进制，默认10进制。
+	sring（）:上同 能转换NaN与undifined。
+	boolean（）：将字符串转换为boolean类型。除了false、0、NaN、空字符串、undefined，其他全部转换为true
+	.toUpperCase():转换为大写：判断相等时两端都需要写。
+	.
+隐式转换：
+	a=+a、a*、a/、%、计算符都可以让a直接转换为number
+	a+=“”：数字转换为字符串
+	a=！！a：转换为boolean false；!!a：true：
+	if(a)为true ；当a为false，0，
+
+输出标签：document.write("<ul>")标签写法相同，结束标签用document.write("</ul>")
+	document.write("<li>")
+	document.write("a")
+	document.write("</li>")
+定时器:两个参数，第一个为function 第二个为时间。
+	setInterval() ：		第二个参数为周期，方法会不停地调用函数，直到 clearInterval() 被调用或窗口被关闭。
+	var a=setTimeout() ：		在指定的毫秒数后调用函数或计算表达式。2个相同的定时调用一个函数会被累加，延迟时间减半。点击事件调用时一般是在函数执行第一步清除上一次的定时器。
+	clearInterval():		清除周期执行函数。
+	clearTimeout(a)			清除延迟执行函数。当a第一次还有运行时，只要定义了var a 就行，没定义会出错。也就是a可以为undifined
+	requestAnimationFrame(callback) ui队列执行完成后执行callback
+	cancelAnimationFrame（）	清理队列
+	一般延迟执行的定时器第一次还没执行，第二次又要执行了，就必须清理，不能重复，不然定时时间减半。
+
+执行上下文：即执行函数会创建一个称为执行上下文的内部对象，一个执行上下文定义了一个函数执行时的环境。每个执行上下文都有自己的作用域链，用于标识符解析，当执行上下文被创建时，它的作用域链初始化为当前运行函数的[[Scope]]所包含的对象
+内存泄漏：闭包会引用整个包含函数（外部function）的活动对象。函数的活动对象，就是他的作用域链的0层，其他事全局对象。闭包活动对象中有引用类型，就不会释放内存，除了IE9以下都是自动释放的。
+当闭包函数活动对象有事件时，事件当时不会执行，但是事件会留在内存中以便运用，但当事件运行前又运行了一次包含函数，此时再次运行事件，会连续运行两次。
+闭包：有权访问另一个函数的作用域的函数。是一个函数。
+
+可以直接调用，也可以通过window来调用，接收一个函数作为回调，返回一个ID值，通过把这个ID值传给window.cancelAnimationFrame()可以取消该次动画。
+requestAnimationFrame(callback)//callback为回调函数
+
+

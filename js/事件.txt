@@ -1,0 +1,143 @@
+模式：	
+	内联模式：在标签内写：onclick='box()'，box（）不能放在window.onload内。因为放在内部会形成闭包，外部无法访问。
+	脚本模式：在脚本内写：例：获取元素  input1.onclick=function （）{}；点击一次就是调用一次。所以input1.onclick必须等于一个索引，不能等于值。在分开写的时候，就写：input1.onclick=a(）
+	this:事件的函数中this代表此事件的元素。
+事件触发：a.onclick:a元素的内部点击事件，外部点击无反应。
+	鼠标事件：
+		onclick		当用户点击某个对象时调用的事件句柄。
+		ondblclick	当用户双击某个对象时调用的事件句柄。
+		onmousedown	鼠标按钮被按下。
+		onmouseup	鼠标按键被松开。一般会清理点击和移动事件。
+		onmousemove	鼠标被移动。拖拽需要以上3个事件同时用。
+		onmouseout	鼠标从某元素移开。就算移到子元素也会触发，若想不触发，需设置它的目标元素是不是子元素，是子元素就不触发。就算设置捕获也不好使。
+		onmouseover	鼠标移到某元素之上。就算移到子元素也会触发，当子元素与父元素边界重合时，按照冒泡规则，只能截获子元素，上面的也一样。
+		onmouseenter 	鼠标进入元素触发，进入其子元素不触发。代替上面的两个
+		onmouseleave	鼠标离开触发，离开子元素不会触发。代替再上面的两个。
+		
+		onscroll	滚动条动了执行.
+	键盘事件：
+		onkeydown	某个键盘按键被按下。(什么都返回)
+		onkeypress	某个键盘按键被按下并松开。(只返回字符键)
+		onkeyup		某个键盘按键被松开。
+	移动端：
+		touchstart   	手指刚接触屏幕时触发
+		touchmove   	手指在屏幕上移动时触发
+		touchend     	手指从屏幕上移开时触发	
+		touches         位于屏幕上的所有手指的列表
+		targetTouches   位于该元素上的所有手指的列表
+		changedTouches  涉及当前事件的所有手指的列表
+		
+	复制粘贴：
+		oncopy		复制
+		oncut		剪切
+		onpaste		粘贴
+	页面加载：
+		onload		一张页面或一幅图像完成加载。
+		onunload	页面卸载时发生，就如刷新页面会卸载前次页面。
+	表单事件：
+		ducoment.forms[0]	获取表单对象。[]内也可以是name属性的名称。
+		onfocus			元素获得焦点。
+		onblur			元素失去焦点。
+		onselect		文本被选中，并且鼠标移开。
+		onchange		文本内容被改变，并且鼠标光标不再。 
+		onsubmit		确认按钮被点击，是在form上面触发，并且在input上实际点击。evt.preventDefault()阻止提交。
+		onresize		窗口或框架被重新调整大小触发。例如：放大缩小页面。
+	表单属性：
+		input1.disabled		值为boolean，true为不可点击，false为可点击。
+	表单方法：
+		form2.submit():		让没有提交功能的元素来提交表单。if（）form2.submit（）：只要满足条件，就提交。
+		form1.reset()		表单初始化
+	表单HTMLDOM 方法
+		form1			获取的form1是所有input的集合，它是一个伪数组，也是一个表单对象。所有的元素集合是表单控件元素:input  textarea select，不包含文本节点及非表单控件元素。
+		form1.elements[0]	表单控件集合，跟上面相同，这种做法更好。
+		form1.elements["name"]	获取name是name的表单控件。
+		input1.form		得到input所属的form对象。	
+		button1.type		button如果没有写type默认为submit.
+		select1.type		默认为select-one 单选。设置multiple="multiple" ，则变为multiple。
+	表单字段方法：
+		a.forcus()		将光标定位到a元素文本节点。
+		a.blur()		上同，不定位到a元素。
+		a.select()		选定标签的文本。a必须为input text或者textarea，标签。
+	表单的value：		
+		textarea：		设置value属性没有用，但获取value属性会获取textarea的innerHtml
+		input text		当input的style为text时，value值就是文本内容。
+		select：		value值是默认选中的子标签option标签的value值，默认选中设置属性selected=“selected”
+		其他标签：		value值都是属性设置的。
+	获取value值：
+		sel.value			获取选中的option的value值
+		sel.defaultValue		获取一开始的value值，不会改变。
+		sel.setSelectionRange(m,n)	选择第m个位置到n个位置的字符串。后面必须跟a.focus():不然没有效果。
+		sel.selectionStar		返回选择文本的开始位置。与select事件一起用。并且与a.value.subString（a.selectionStar,a.selectionEnd）一起使用返回选中的字符串
+		sel.selectionEnd		返回选择文本的结束位置。与select事件一起用。并且与a.value.subString（）一起使用返回选中的字符串。
+	select:
+		select1.selectedIndex	返回选中的文本位置，与change（文本改变）事件一起使用可以查看位置。也可以设置其值，用来定位。
+		options[1].selected:	返回boolean值，可赋值为true，可以则第二个默认为选中状态。option对象上使用。用于判断。
+		options[1].text:	等于options[1].innerHTML
+		sel.options：		返回option数组；
+		new Option("value","text"）使用构造函数创造option标签及其value与text值。	
+		sel.appedChiled('x')	使用标准
+		sel.remove(0)：		删除第一个option元素。
+		option1.index		返回option1的位置。
+
+
+事件对象：
+	事件对象，一般称为event对象，这个对象是浏览器通过函数把这个对象作为参数传递过来的。可以通过arguments[0]获取。或者用传递参数function（a）{alert（a）}
+	移动端：
+		e.changedTouches[0].clientX：	touch事件的x值，是相对于屏幕的。
+		e.changedTouches[0].clientY:	touch事件的Y值，是相对于屏幕的。
+	鼠标event：先用上面的方法获取事件对象（evt）	click没有e.button，用mousedown
+		evt.button属性：
+			0：代表左键
+			1：代表中键
+			2：代表右键
+			3：左右键同时按
+		evt.relatedTarget:	evt相近的对象。evt为鼠标事件，返回移入（onmouseover）或移出来（onmouseout）的附近的对象。
+		client属性：距离左上角（可区）（0,0）的位置。都为正值。
+			evt.clientX	返回当事件被触发时，鼠标指针的水平坐标。
+			evt.clientY	返回当事件被触发时，鼠标指针的垂直坐标。如果要获取距离隐藏顶部的距离 a.clientY+document.documentElement.scrollTop
+		screen属性：距离屏幕的距离。
+			evt.screenX		返回当某个事件被触发时，鼠标指针的水平坐标。
+			evt.screenY		返回当某个事件被触发时，鼠标指针的垂直坐标。
+		shift、ctrl、Alt键	
+			如果将它写在时间function的内部，就只有触发function事件时才执行，触发时速度很快，所以就只有按下去不放才会执行。详见笔记。
+			evt.shiftKey:	返回boolean值。
+			evt.ctrlKey:	上同
+			evt.altKey:	上同
+		键盘事件：
+			evt.keyCode：		返回按键的ASCII码，不区分大小写。全部转换为小写keypress不支持.
+			evt.charCode：		返回字符编码，支持大小写。keypress使用。
+			Sting.fromCharCode():	括号内为字符编码，将字符编码转换为字符。
+			兼容：function getCharCode（）{if （typeof e.charCode==‘number’）return e.charCode；else{return e.keyCode}
+
+		evt.target||evt.srcElement:	获取事件对象目标元素。evt若为事件对象，则此处点击哪儿就能获取那儿的发生事件的元素。
+		a.contains(b):			a元素是否包含b元素。返回boolean	
+		     	
+		
+冒泡：如果一个浏览器中内层标签点击事件后，若外层容器也会获取事件，所以会从内往外一层一层执行。
+捕获：从外部往内部一步一步执行。
+focus(鼠标聚焦), blur(鼠标失去焦点), change, submit, reset, select等事件不冒泡
+	
+	x.stopPropagation()：	取消冒泡。点击x后，它的事件发生后，上层容器事件不会发生。
+	x.addEventListener('click',funciton(){},false):w3c自带方法，参数第一个为事件名，第二个为事件方法，第三个参数true为捕获，false为冒泡，多设置相同事件，不同元素时有效。此方法不会被覆盖掉，两个相同事件，不同方法也会执行。但全都相同会被覆盖掉。
+	x.removeEventListener('click',funciton(){},false):删除事件。这两个方法其中的参数函数中this也是代表事件对象的。就算是引用方法也会自动传e和this。
+
+其他事件：
+	evt.preventDefault()：		阻止对象元素的默认事件。
+	a.contextmenu ：		上下文菜单事件，跟阻止默认行为（evt.preventDefault()）一起用，可以修改右键菜单。很常用。
+	a.mousewheel:			ie chrome滚轮事件
+	evt.wheelDelta:			ie chrome滚轮事件滚动的距离数字
+	a.DOMMouseScroll:		firefox滚轮事件
+	-evt.detail*40:			firefox滚轮事件滚动的距离数字		
+	onresize：			窗口改变大小触发
+事件清理:
+	不清除会一直执行的事件必须清理
+		2.mousemove
+事件中的this与e.target:
+	若在冒泡中，e.target可以找到目标元素，而this只能找到设定该事件的元素，子元素反馈也是委托元素。
+
+
+
+
+
+
+		

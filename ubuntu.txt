@@ -1,4 +1,4 @@
-解压
+﻿解压
 $ xz -d ***.tar.xz
 $ tar -xvf ***.tar
 
@@ -8,7 +8,9 @@ $ tar -xvf ***.tar
 
 
 按程序查端口：netstat -atunp
-按端口查程序：lsof -i:port
+查看程序端口 lsof -i:80
+查看程序进程  ps -ef|grep nginx
+所有进程 top
 
 
 

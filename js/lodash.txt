@@ -1,0 +1,13 @@
+过滤：		_.difference([1,2,3],3) 			[1,2]
+去假值：	_.compact(['a',0,1,'',3,NAN,undefined]) 	['a',1,3]
+数组元素删除：	_.drop([1,2,3],2)				[2] 从头开始删2位。
+		_.drop([1,2,3],2)				[1] 从尾开始删除。
+		_.dropRightWhile（[1,2,3]，function(n){return n>1}）[1]		
+对象
+		_.cloneDeep(obj)		深度克隆对象。
+		_.random(15,20)			15到20的随机数
+		_.assign(obj1,obj2,obj3)	合并对象，重复属性会由后面的属性覆盖前面的属性。
+		_.omit(objA, ['car', 'age']);	去除属性 car 和age 不会修改原来的属性，返回新对象。
+		_.pick(objA,['car',age])	取car 和 age属性为新数组。返回新对象。
+		_.attempt(JSON.parse.bind(null, str)) 解析json
+		_.times(5,fn)			进行5次循环。

@@ -1,0 +1,11 @@
+设置cookie：
+	document.cookie="user=gs；expires=失效时间；path=路径访问；domain=域名访问；secure" 
+		domain：域名访问，一般是自动生成的。是2及域名时才必须要设置。
+		path:路径限制访问，可以限制访问cookie的目录。
+		secure:只需要写这个就行了，需要用https访问。
+	document.cookie='user='+encodeURIComponent('辜胜')：一般这样写。返回为字符串。一般name与value都需要encodeURIComponent()
+获取cookie：
+	decodeURIComponent（document.cookie）：一般这样获取数据
+过期时间：
+	1.在会话结束时，就是关闭浏览器时，自动清空此cookie文件夹，默认失效时间。
+	
