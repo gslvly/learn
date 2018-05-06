@@ -56,7 +56,7 @@ mongose
 			account: { type: String, required: true },
 			password: { type: String, required: true },
 			nickName: { type: String, default: '' },
-			headUrl: { type: String, default: '' },
+			headUrl: { type: String, default: '' , unique: true}, 重复将报错
 			age: { type: Number }
 		})
 		// schema 也可是json  但这样写可以在schema上添加methods.func
@@ -83,8 +83,23 @@ mongose
 		find(query).select('xx, xx').then()
 
 
-	验证
-	  User.pre('save', func)
-		User.path('keypath').validate(function(value))
+	中间件 // 不好用
+		Schema
+			schema.path('keypath').validate(function(value)) 验证某个字段
+				.pre('save', async func) 在save之前触发
+				.post('save', func(doc)) 后中间件，在某个事件之后触发 
+							remove
+							validate 在pre save 之前触发
+							init
+		
+	
+	populate({path: key, select: 'email' , populate: {xx}, model: 跨数据库链接model名字}})
+		select: 需要的属性
+	  A中表的一个属性指向B表一个_id 将A表属性替换成B表的所有数据
+		store中必须定义 link:{ type: Schema.Types.ObjectId, ref: 'B表的名字'}
+		Store.findOne({ name: 'cc' }).populate('link').then() 
+		或者、
+		
+
 
 	聚合
