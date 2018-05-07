@@ -96,10 +96,14 @@ mongose
 	populate({path: key, select: 'email' , populate: {xx}, model: 跨数据库链接model名字}})
 		select: 需要的属性
 	  A中表的一个属性指向B表一个_id 将A表属性替换成B表的所有数据
-		store中必须定义 link:{ type: Schema.Types.ObjectId, ref: 'B表的名字'}
+		store中必须定义 link:{ type: Schema.Types.ObjectId, ref: 'B表的名字', refPath: 'connections.name'}
 		Store.findOne({ name: 'cc' }).populate('link').then() 
 		或者、
-		
-
+		store.virtual('虚拟属性', {
+			ref: 'tablename',
+			localField: 'storekey' store 表的字段
+			foreignField: 'aa' 另一张表对应的字段
+		})
+		Store.find({}).populate('虚拟属性').then  虚拟属性的值 就是 另一张表.find({aa:storeValue})
 
 	聚合

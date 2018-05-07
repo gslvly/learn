@@ -29,13 +29,15 @@ const Store = mongoose.model('refs', store)
 // Schema1.pre('update', function (...a) {
 //   console.log('update')
 // })
-User.create({name: 'gg', age: 10}).then(res => {
+// User.create({name: 'gg', age: 10}).then(res => {
 
-  return Store.create({name: 'gg'})
-})
+//   return Store.create({name: 'gg'})
+// })
 
 // .catch(console.error)
-Store.find({ name: 'gg' }).populate('linkto').then(res => console.log(res))
+Store.findOne({ name: 'gg' })
+  .populate('linkto')
+  .then(res => console.log(res.linkto[0]))
 // require('./text.js')
 
 // User.update({name: 'gss'}, { $set: { text: '5' } }).then(console.log)
