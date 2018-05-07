@@ -1,0 +1,2 @@
+没有鉴权之前使用需要鉴权的东西，不会在onError函数里执行，会被console.error()直接打印出来
+config()→ready()→config()→ready()

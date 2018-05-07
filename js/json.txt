@@ -1,0 +1,16 @@
+本质上为字符串。
+json文件如下：就是数组内每个数据都是对象。
+[
+ 	{
+		"name":"gs",
+ 		"age":28
+		"height"：170
+	 },
+ 	{	
+	 	"name":"杨莉",
+	 	"age":28
+		"height"：199
+	 }
+ ]
+解析JOSN：		var json1= JSON.parse（jion，function（）{}）：将传过来的字符串json文件转换为数组。参数为jion文件（字符串），第二个参数函数下同。可以不写
+转换为json字符串：	var json=JSON.stringify（box,['name','age']，4]）： 将box转换为json字符串，并且只要name与age属性。第二个参数也可以是function （name，value）,参数只能是名和值。

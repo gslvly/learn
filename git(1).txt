@@ -1,0 +1,57 @@
+地址规则：https://仓库名/
+全局配置：
+	名字	：git config --global user.name 'gs'
+	email	：git config --global user.email '605661239@qq.com'
+	查看配置：git config --list
+建立仓库：目录下 git init
+状态：
+	已提交（committed）:已提交表示该文件已经被安全地保存在本地数据库中了
+	已修改（modified） :已修改表示修改了某个文件，但还没有提交保存；
+	已暂存（staged）   :已暂存表示把已修改的文件放在下次提交时要保存的清单中。
+克隆：
+	git clone  https://github.com/gslvly/gslvly.github.io.git app4 app4是自己建的空文件夹 克隆放在里面，之后需要到这个新目录下运行。
+	git clone -o name url app4 	可以备注远程主机名字（非自己的主机名，是别人的，自己的用remote -add添加） 如果不写为origin
+功能：
+    本地：
+	git status ：			检测当前状态。
+	git diff 'path'			检测变化，显示变化内容。查看modify状态文件。
+	git add：			跟踪文件（新建或者修改的文件需要，可以在status中显示出来，放在暂存区。）
+	git rm：			删除文件 与add对应。会删掉本地文件几暂存区文件。
+	git rm --cached t1.txt		去除跟踪，不删除文件。
+	git mv oldName newName		文件重命名。
+	git log -p -2			更新信息。-p为更新差异，-2为最近2次的差异。
+	git commit -m '修改了xxx' 	提交文件
+	git commit --amend 		撤销刚才的提交，重新提交，上次提交后没有其他操作才行。
+    远程：
+	git remote 			查看主机名字
+	git remote -v 			查看主机网址
+	git remote -add 主机名 url	添加主机名
+	git remote show 主机名		查看主机详细信息。
+	git remote rename 原主机名 新主机名
+    更新：
+	git fetch 主机名 分支名		取回远程主机 在分支上的更新。不写分支名为所有更新。
+	
+	
+    分支：
+	git branch 			查看所有分支。
+	git branch ts			新建ts分支
+	git checkout master		跳到主机
+	git checkout 分支名		跳到分支		
+	git checkout -b newtest		创新新分支newtest，并跳转到上面，是上面两条的合写。
+	git merge ts			与ts分支合并
+	git merged 			查看已经合并的分支。
+	git branch -d ts		删除ts分支 需要被master合并，然后才能删除。
+	git branch --no-merged		查看没有被合并的
+    临时储存
+	git stash 			临时缓存
+	git stash pop 			拿出缓存
+    git push origin :feature_test	删除远程分支
+    本地分支建远程分支
+	git branch --set-upstream-to=origin/fearue_test	
+    回滚：	
+    	git reset --hard needversion	回滚到需要版本，删除所有改动。
+	--keep   			回滚到需要的版本，但是不删除本地的改动。
+    批量删除:
+	 git branch |grep ‘bra‘|xargs git branch -d
+    与远程分支同步
+	git remote prune origin

@@ -1,0 +1,111 @@
+原生创建：
+	实例化对象
+		var a=new XMLHttpRequest()
+	准备发送
+		a.open（get，url+"?rand="+Math.random()）,ture) get方式，地址及异步加载。
+	发送
+		a.send()
+	接收
+		a.responseText
+
+	事件 
+		a.onreadystatechange	指a接收数据状态变化，每变化一次就执行一次。不能用addeventlistenner
+	状态
+		a.readyState		指a接收数据目前状态，一共4个阶段。
+		a.status		200为正常接收到数据。404为没有下载到数据。
+
+
+
+vue
+
+	//直接方法：jsonp
+	this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',{
+	params: {
+		wd:'aaa'							
+	 },
+	jsonp:'cb',//不写默认为callback，百度是cb
+	jsonpCallback:"cbFun",
+	}).then(function(res){
+		console.log(res)		
+	},function(res){
+		console.log(res.status)
+	})	
+
+	//直接get方法
+	this.$http.get('json/t1.json')
+	.then(function(res){
+		console.log(res.body)		//json对象 已解析。
+	},function(res){			//错误信息
+		alert(res.status)
+	})
+
+	//直接post方法
+	this.$http.post('t1.php',{a:1,b:5},{emulateJSON:true}).then(function(res){//第三个参数走post才有用。
+		alert(res.data)
+	},function(res){
+		alert(res.status)
+	})
+
+vue2 
+	jsonp获取
+	jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=dd', {//不能再参数添加查找值。
+          param:'cb',		
+          timeout:10000,
+        }, function (err, data) {
+          if (err) {
+            console.error(err.message);
+          } else {
+            console.log(data);
+          }
+        })
+axios 
+	.get('xxx', {params: {name: 'gs'}})).then()
+	.delete('xxx', {params: {name: 'gs'}})).then()
+	.put('xxx', {name: 'gs'})).then()
+	.post('xxx', {name: 'gs'}).then()
+
+koa 接收
+	get, delete: ctx.query  || ctx.request.query
+	post, put  : ctx.request.body
+
+jquery：
+	$.ajaxSetup({					//初始化重复的属性：将相同的部分单独写。
+		type:'post',
+		url:'user.php'
+		data:$('form').serialize(),
+		dataType:'json'				//默认是文件的格式类型，但php除外，php的json必须要强制改为json。乱写返回字符串。
+	})
+	$.ajax（{
+		success:function(response,status,xhr){	//初始化后此处只需要不同的属性就够了。
+			$('div').html(response)
+		}，
+		timeout:500，				//ajax只加载0.5秒，多余时间就失败。
+		global：false，				//禁止$(document).ajax触发
+		error:function(xhr,errorText，errorType){
+			
+		},
+		complete：fn,
+		beforeSend:fn
+		
+	}）
+
+
+	获取jsonp数据。	
+	$.ajax({
+		type:'get',
+		url:'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+		data:{wd:'e'},			//搜索的数据。
+		jsonp: "cb", 		 	//服务器端按此参数调用callback函数。
+		jsonpCallback:"cbFun",		//callback调用的函数名
+		dataType : "jsonp",		//定义jsonp文件传送，不然会被拦截。
+		success:function(res,status){
+		console.log(res.s)
+		}
+	})
+
+
+
+
+
+
+

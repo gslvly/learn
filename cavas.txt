@@ -1,0 +1,48 @@
+绘制方块：
+	b=a.getContext（‘2d’）:			获取2d绘图环境。a为canvas元素。
+	b.fillRect(L,T,W,H):				填充方块，绘制方块，默认是绝对定位一样。
+	b.strokeRect(L,T,W,H):				带边框的方块。默认是1px
+
+绘图属性：
+	fillStyle:					填充颜色
+	strokeStyle：					边线颜色
+	lineWidth:					线宽度，是一个数值。
+	
+直线：
+	b.beginPath()					开始画线
+	b.moveTo(100,100)				第一个点 100,100
+	b.lineTO(200，200)				第二个点 200，200
+	b.lineTo(300,250)				第三个点
+	b.closePath()					闭合路径，并且与beginPath（）对应，使下面的b.stroke()只针对上边的
+	b.stroke()					用线将几个点连起来。
+	b.fill()					填充。
+
+圆形：
+        ctx.arc(x, y, radius, startAngle, endAngle, redirect) 原点x,y,半径，开始点，结束点（1/2π），顺时针或者逆时针。
+
+
+矩形：
+        rect(x, y, width, height) 
+	ctx.fillRect(0,0,150,37.5)  不需要ctx.fill()
+
+赛贝尔曲线:
+        二次: quadraticCurveTo(cp1x, cp1y, x, y) 控制点，结束点
+	三次: bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) 2个控制点，一个结束点
+
+Path2D:
+	const ctx1 = new Path2D() 
+	const ctx2 = new Path2D()
+	ctx1.rect(10,10,50,50)
+	ctx2.arc(100, 100, 20, 0, 2*Math.PI )
+	ctx.stroke(ctx1)                      	方形使用stroke
+	ctx.fill(ctx2)				圆形使用填充
+色彩:
+	fillStyle="color"
+	strokeStyle="color"||"rgba()"
+	ctx.globalAlpha = 0.2;                   透明度
+
+
+使用图片： 
+	drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight) 元素，起始点，显示宽高，裁剪点，宽高。
+    	
+

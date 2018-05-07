@@ -1,0 +1,49 @@
+var Socket = new WebSocket(url, [protocol] );
+以上代码中的第一个参数 url, 指定连接的 URL。第二个参数 protocol 是可选的，指定了可接受的子协议。
+Socket.readyState	
+	只读属性 readyState 表示连接状态，可以是以下值：
+	0 - 表示连接尚未建立。
+	1 - 表示连接已建立，可以进行通信。
+	2 - 表示连接正在进行关闭。
+	3 - 表示连接已经关闭或者连接不能打开。
+4个事件
+	Socket.onopen	连接建立时触发
+	Socket.onmessage	客户端接收服务端数据时触发
+	Socket.onerror	通信发生错误时触发
+	Socket.onclose	连接关闭时触发 （断网自启）
+2个方法
+	Socket.send()	使用连接发送数据
+	Socket.close()	关闭连接
+
+file 
+	let input = document.getElementById('aa'),
+	    reader = new FileReader()
+	input.onchange = function () {
+	    let file = input.files[0]
+	    reader.readAsDataURL(file)
+	    reader.onload = function (e) {
+		console.log('onload', e)
+		console.log(file)
+	    }
+	}
+事件：
+onabort
+当读取操作被中止时调用.
+onerror
+当读取操作发生错误时调用.
+onload
+当读取操作成功完成时调用.
+onloadend
+当读取操作完成时调用,不管是成功还是失败.该处理程序在onload或者onerror之后调用.
+onloadstart
+当读取操作将要开始之前调用.
+onprogress
+在读取数据过程中周期性调用.
+
+下载csv文件的格式：'data:text/csv;charset=utf-8,' + encodeURI('a, b, c, \naa, bb, cc')
+
+sessionStorage  与 localstorage 与 cookie区别
+  sessionStorage 只在一个tab 中存在，localstorage 和cookie 可以跨tab
+
+
+

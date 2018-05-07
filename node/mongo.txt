@@ -1,0 +1,134 @@
+mongo 	:进入交互模式
+conneting to：text 	进入text数据库
+
+层对应： db → user → 
+	 connection
+
+CLI 工具
+db			查看当前的数据库 这儿是text
+show dbs		显示所有数据库
+show collections	查看所有集合
+
+use local			切换数据库
+db.dropDatabase()		删除当前所在数据库数据，不会删掉数据库。
+db.user.stats()			所有数据状态json。
+              .count		所有条数。
+
+增加：
+db.runoob.insert({x:10})		插入{x：10} 到runoob 中，并合并对象。这个对象原始值是 _id:ObjectId
+db.runoob.insertMany([{x:1},{x:2}])
+
+
+查找：
+db.users.find({"name":"gs"，"age": "100"})	查找具有如下键值对的数
+db.users.find({"score.yuwen": 100}) 		value为obj查找方法
+db.users.find({"score.yuwen": {$gt:50})		语文成绩大于50分 $lt:50 为小于
+db.users.find({$or:[{"age": 9},{"age":11}]})    年龄为9岁或者为11岁。
+db.users.find({"hobby":"睡觉"}) 		hobby为数组也能查到。
+db.users.find({hobby: ['吃饭',"睡觉"]})		查数组
+{_id: ObjectID(ctx.query._id)}			利用id查找 const ObjectID = require('mongodb').ObjectID
+
+排序：
+db.users.find().sort({'score.yuwen':-1,'age':1}) db查找后按照语文得分降序排，然后按年龄升序排。
+
+修改：
+db.users.update({"name":"小明"},{$set:{"age":16}，$currentDate: {'lastModified':true},{multi: true}) ：先查找，然后设置年龄16岁 {multi: true}:可以设置所有名字叫小明的。
+替换：
+db.users.update({"name":"小明"},{"age":16},{age: 10})：完整替换，第三个参数替换第二个。
+
+db.users.save({"_id:ObjectId("45ld452lb0l")","username":"gs"}) 		   必须用_id查找，然后使用写上的键值替换掉所有的数据。
+
+删除：
+db.users.remove({"name":"gs"},true)  第一个参数是查找值，第二个参数是否为单行删除，默认是全部删除。
+
+
+导入数据库:
+mongoimport --db test --collection restaurants --drop --file primer-dataset.json
+cat /e/forms.formdata.gz |mongorestore --gzip --archive -vvvv --stopOnError
+
+--db test : 往test数据库导入
+--collection restaurants ：导入数据库哪个集合
+--drop ：清空集合
+--file ： 需要导入哪个源文件。
+
+mongoClient：
+  mongoClient.connect('mongodb://'+ path, function(err, db){}        				链接
+  db.collection(collection).insertOne(value, function(err, result){}）				插入
+  db.collection(collection).find({}).toArray(function(err, result){}).limit(4).skip(4)		忽略前4条，再查4条。
+
+mongoose 
+注册：
+const mongoose = require('mongoose')
+let uri = 'mongodb://username:password@hostname:port/databasename'
+uri = 'mongodb://localhost/nod/mongoose'
+mongoose.connect(uri)
+const BookSchema = new mongoose.Schema({
+  name: String,
+  author: String,
+  publishTime: Date
+})
+mongoose.model('Book', BookSchema) //有第二个参数是注册，没有是调用。
+
+插入：
+const mongoose = require('mongoose')
+require('./model.js')
+const Book = mongoose.model('Book')
+const book = new Book({
+  name: 'new book',
+  author: 'gs',
+  publishTime: new Date
+})
+book.author = 'lili'
+book.save((err) =>{
+  console.log(err?err:'success')
+})
+
+查找：
+ Book.find({}, (err, docs) => {
+  if (err) {   
+    console.log('err:',err)
+    return
+   }
+   console.log('find:',docs)
+ })
+Book.findOne({author: 'lili'}, (err, docs) => {
+  if (err) {
+    console.log('err:',err)
+    return
+  }
+  docs.author = 'gs'
+  docs.save()
+  console.log('findOne:',docs)
+})
+
+条件查找：
+const cond = {
+  $or: [
+    {author: 'gs'},
+    {author: 'lili'}
+  ]
+}
+Book.find(cond, (err, docs) => {
+  if(err) {
+    console.log('condition-find-err:', err)
+    return
+  }
+  console.log('condition:',cond,'find:',docs)
+})
+
+删除：
+ 做法一
+ Book.remove({author:'gs'}, (err) => {
+   if(err) {
+     console.log('err:', err)
+   }
+ })
+ 做法二
+ Book.findOne({author: 'gs'}, (err, docs) => {
+   if (err) {
+     console.log('err:', err)
+     return
+   }
+   docs.remove() // 这儿异步删除，下面的一行还会原来的docs
+   console.log('docs:',docs)
+ })
