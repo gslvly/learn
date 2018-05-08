@@ -35,8 +35,10 @@
  $addToSet 增加一个值到数组内，而且只有当这个值不在数组内才增加。
  $pop { $pop : { field : 1 } } 删除数组的第一个或最后一个元素
  $rename { $rename : { old_field_name : new_field_name } }
- 
+ $ne { field: { $in: [<value1>, <value2>, ... <valueN> ] } } 字段值不等于
+ $nin { field: { $nin: [ <value1>, <value2> ... <valueN> ]} } 字段值不在指定数组或者不存在
 
+ 
 
  ObjectId("5aeab5907ab3603042ee5275").getTimestamp() 获取创建时间
  new ObjectId("5aeab5907ab3603042ee5275").str 返回字符串
@@ -96,10 +98,14 @@ mongose
 	populate({path: key, select: 'email' , populate: {xx}, model: 跨数据库链接model名字}})
 		select: 需要的属性
 	  A中表的一个属性指向B表一个_id 将A表属性替换成B表的所有数据
-		store中必须定义 link:{ type: Schema.Types.ObjectId, ref: 'B表的名字'}
+		store中必须定义 link:{ type: Schema.Types.ObjectId, ref: 'B表的名字', refPath: 'connections.name'}
 		Store.findOne({ name: 'cc' }).populate('link').then() 
 		或者、
-		
-
+		store.virtual('虚拟属性', {
+			ref: 'tablename',
+			localField: 'storekey' store 表的字段
+			foreignField: 'aa' 另一张表对应的字段
+		})
+		Store.find({}).populate('虚拟属性').then  虚拟属性的值 就是 另一张表.find({aa:storeValue})
 
 操作符

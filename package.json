@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "jsonwebtoken": "^8.2.1",
     "mongoose": "^5.0.17"
   }
 }

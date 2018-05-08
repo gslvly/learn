@@ -36,8 +36,10 @@ const Store = mongoose.model('refs', store)
 // })
 
 // .catch(console.error)
-Store.find({ name: 'gg' }).populate('linkto').then(res => console.log(res))
-// User.find({ name: 'gg'}).then(console.log)
+
+Store.findOne({ name: 'gg' })
+  .populate('linkto')
+  .then(res => console.log(res.linkto[0]))
 // require('./text.js')
 
 // User.update({name: 'gss'}, { $set: { text: '5' } }).then(console.log)
