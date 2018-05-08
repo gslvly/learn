@@ -12,7 +12,8 @@ const store =  Schema({
 store.virtual('linkto', {
   ref: 'tests',
   localField: 'name',
-  foreignField: 'name',
+  foreignField: 'text',
+
 })
 
 const Schema1 = Schema({
@@ -36,6 +37,7 @@ const Store = mongoose.model('refs', store)
 
 // .catch(console.error)
 Store.find({ name: 'gg' }).populate('linkto').then(res => console.log(res))
+// User.find({ name: 'gg'}).then(console.log)
 // require('./text.js')
 
 // User.update({name: 'gss'}, { $set: { text: '5' } }).then(console.log)
