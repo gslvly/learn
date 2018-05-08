@@ -35,8 +35,10 @@
  $addToSet 增加一个值到数组内，而且只有当这个值不在数组内才增加。
  $pop { $pop : { field : 1 } } 删除数组的第一个或最后一个元素
  $rename { $rename : { old_field_name : new_field_name } }
- 
+ $ne { field: { $in: [<value1>, <value2>, ... <valueN> ] } } 字段值不等于
+ $nin { field: { $nin: [ <value1>, <value2> ... <valueN> ]} } 字段值不在指定数组或者不存在
 
+ 
 
  ObjectId("5aeab5907ab3603042ee5275").getTimestamp() 获取创建时间
  new ObjectId("5aeab5907ab3603042ee5275").str 返回字符串
