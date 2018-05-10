@@ -14,12 +14,12 @@
   grid-auto-columns: 2px; //隐式轨道宽度，
   grid-auto-rows: 2px; // 上同，由于自容器设置的grid-row超出父容器所创建的template-rows时，就会产生
   grid-auto-flow: row; // row | column | row dense | column dense | 没有设置位置的子容器，按设置方向 自动填充在剩余的网格内。dense 先填小的网格。
-  grid: grid-template-rows; // none | subgrid | rows / columns | auto-flow
+  grid:10px 20px; // none | subgrid | rows / columns | auto-flow
 }
 .子容器 {
   grid-row: 1 / span 2; // 开始线/ 占2格
   grid-column: 1 / 2; // grid-colunm-start/grid-colunm-end
-  grid-area: 1 / 2 / 3 / 4; // row 和 column一起写
+  grid-area: 1 / 2 / 3 / 4;// y/x /y/x 定位出区域
   grid-area: title; // 命名用法
   justify-self: start; //tart | end | center | stretch;著作权归作者所有。
   align-self: start; // 上同
