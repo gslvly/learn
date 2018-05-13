@@ -1,0 +1,26 @@
+.父容器 {
+  display: grid;
+  grid-template-rows: 10px 3rem; // 区块行
+  grid-template-columns: [first] 10px [first]3rem 30% 1fr 1fr; //fr为平分剩下的空间 [first]为线命名，这儿默认为1，可以重复命名,用法为 first 1 first 2
+  grid-template-areas:  // 命名
+    'title title title title title'
+    'content content content content content';
+  grid-template: 10px 3rem / 10px 3rem 30% 1fr 1fr; // 上面的合写
+  grid-gap: 1px / 2px; // column与row-gap gap 间隙
+  justify-items: center; //  start | end | center | stretch,每个单元格中的内容相对于此单元格的水平位置
+  align-items: center; // 上同 竖直方向
+  justify-content: start; // start end center space-around space-between space-evenly 每个所有单元格按列分成不同区块，此区块相对于父容器的位置。这些单元格可能被设置绝对大小，所以可能不是占满父容器的。
+  align-content: start; // 上同 按照行分成各区块 evenly 与around区别： evenly按照剩余空间与边缘线平分间隙。around 边缘线不分间隙，周围间隙会小一半。
+  grid-auto-columns: 2px; //隐式轨道宽度，
+  grid-auto-rows: 2px; // 上同，由于自容器设置的grid-row超出父容器所创建的template-rows时，就会产生
+  grid-auto-flow: row; // row | column | row dense | column dense | 没有设置位置的子容器，按设置方向 自动填充在剩余的网格内。dense 先填小的网格。
+  grid:10px 20px; // none | subgrid | rows / columns | auto-flow
+}
+.子容器 {
+  grid-row: 1 / span 2; // 开始线/ 占2格
+  grid-column: 1 / 2; // grid-colunm-start/grid-colunm-end
+  grid-area: 1 / 2 / 3 / 4;// y/x /y/x 定位出区域
+  grid-area: title; // 命名用法
+  justify-self: start; //tart | end | center | stretch;著作权归作者所有。
+  align-self: start; // 上同
+}

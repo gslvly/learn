@@ -1,0 +1,7 @@
+css
+ calc （100% -50px） 函数 + - * /
+
+引入：
+    css 引入图片 ，按照此css 的目录开始计算
+    js 给标签加src或者js创建标签 并且加src，或者js给标签加background 按照html目录计算
+    总结： js 操作的 按照html所在目录计算,css 引入按照css文件所在目录
