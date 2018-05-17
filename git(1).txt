@@ -1,4 +1,4 @@
-地址规则：https://仓库名/
+﻿地址规则：https://仓库名/
 全局配置：
 	名字	：git config --global user.name 'gs'
 	email	：git config --global user.email '605661239@qq.com'
@@ -49,8 +49,9 @@
     本地分支建远程分支
 	git branch --set-upstream-to=origin/fearue_test	
     回滚：	
-    	git reset --hard needversion	回滚到需要版本，删除所有改动。
+    	git reset --hard needversion	已经commit,回滚到需要版本，删除所有改动。
 	--keep   			回滚到需要的版本，但是不删除本地的改动。
+	git checkout . 			没有commit 
     批量删除:
 	 git branch |grep ‘bra‘|xargs git branch -d
     与远程分支同步
