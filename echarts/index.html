@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./word.js"></script>
+  <script src="./echarts.js"></script>
+</head>
+
+<body>
+  <style>
+    .echarts {
+      width: 1000px;
+      height: 800px;
+    }
+  </style>
+  <div class="echarts"></div>
+  <script>
+    const div = document.querySelector('.echarts')
+    // echarts.registerMap('hasaike', world) // 注册地图
+    const chart = echarts.init(div)
+
+    chart.setOption({
+      // // 拖动 和 缩放
+      // center: [115.97, 29.71], // 地图中心位置
+      // boundingCoords: [ // 限定显示区域 左上角经纬度  定位右下角经纬度
+      //   [-20, 50], [100, 150]
+      // ],
+      // zoom: 100, // 缩放
+
+      geo: {
+        map: 'hasaike',
+        roam: true,
+        itemStyle: {
+          areaColor: '#aaa'
+        },
+      },
+      series: [
+        {
+          type: 'map',
+          map: 'hasaike'
+        }
+      ]
+    })
+
+
+
+  </script>
+</body>
+
+</html>
