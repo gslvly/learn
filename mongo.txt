@@ -30,8 +30,8 @@
  $unset 用来删除一个键。
  $inc 可以对文档的某个值为数字型（只能为满足要求的数字）的键进行增减的操作。 $inc:{age: -1} 年龄-1
  $push { $push : { field : value }  把value追加到field里面去，field一定要是数组类型才行，如果field不存在，会新增一个数组类型加进去
- $pushAll { $pushAll : { field : value_array } } 同$push,只是一次可以追加多个值到一个数组字段内。
- $pull { $pull : { field : _value } } 从数组field内删除一个等于value值。
+ $pushAll { $pushAll : { field : value_array } } 同$push,只多个值到一个数组字段内。
+ $pull { $pull : { field : _value } } 从数组field内删除一个等于value值。是一次可以追加
  $addToSet 增加一个值到数组内，而且只有当这个值不在数组内才增加。
  $pop { $pop : { field : 1 } } 删除数组的第一个或最后一个元素
  $rename { $rename : { old_field_name : new_field_name } }
