@@ -166,11 +166,11 @@ function callback(e) {
         }
       };
 
-      var startByte = chunkSize * i;
-      var chunk = file.slice(startByte, startByte + chunkSize);
+      var startByte = chunkSize * i
+      var chunk = file.slice(startByte, startByte + chunkSize)
 
-      reader.readAsArrayBuffer(chunk);
-    })(i);  // Start the recursive call by self calling.
+      reader.readAsArrayBuffer(chunk)
+    })(i)  // Start the recursive call by self calling.
   });
 }
 
