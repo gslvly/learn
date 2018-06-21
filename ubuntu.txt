@@ -37,7 +37,7 @@ ps 命令
 -U 按照用户查
 
 
-
+.ssh/authorized_keys
 
 watch -n 1 ‘ps -aux --sort -pmem,pcpu’ 结合cpu 和 内存查进程，每秒一次刷新。
 
