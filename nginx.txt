@@ -1,0 +1,13 @@
+    server {
+        listen       81;
+        server_name  localhost;
+        root   D:/nginx/nginx-1.13.12/html/control;
+        try_files $uri  /index.html;
+    }
+    server {
+        listen       80;
+        server_name  localhost;
+        root   D:/nginx/nginx-1.13.12/html/frontend;
+        try_files $uri  /index.html;
+        
+    }
