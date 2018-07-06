@@ -1,0 +1,13 @@
+
+.div{
+  width: fit-content; // 宽度确定为内容内容宽度。
+}
+.父容器{
+  width: min-content; // 取div1作为父元素的宽度。
+  .div1{
+    width: 100px;
+  }
+  .div2{
+    width: 200px;
+  }
+} 
