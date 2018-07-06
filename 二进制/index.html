@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    let b = 1
+
+    function a(fn, delay) {
+      if (!b) {
+        return
+      }
+      b = 0
+      setTimeout(() => {
+        b = 1
+        fn()
+      }, delay)
+    }
+
+    let c = 1
+    window.onresize = function () {
+      c++
+      a(() => {
+        console.log(c++)
+      }, 1000)
+    }
+  </script>
+</body>
+
+</html>
