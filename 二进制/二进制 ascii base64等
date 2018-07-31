@@ -56,3 +56,23 @@ base64 转成 utf8
   atob(base64)
 utf8 转成 base64 
   btoa
+
+转换速率
+  str 转 arraybuffer
+    最快  
+        let c =  new ArrayBuffer(str.length)
+        let buffer = new Uint8Array(c)
+        for(let i= 0;i < str.length;i++) {
+          buffer[i] = str.charCodeAt(i)
+        } 
+    其次 
+        const bb = new TextEncoder
+        let b = bb.encode(str)
+
+    最后 
+        new Blob([str]) 使用fileReader
+
+  str 转 arraybuffer
+    1、TextDecoder 
+    2、blob 和 FileReader
+    3、String.fromCharcode
