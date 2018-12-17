@@ -1,0 +1,8 @@
+ turnadmin -a -u 605661239@qq.com -r gusheng123.top -p g468291375
+turnserver -o -a -f -v --mobility -m 10 --max-bps=500000 --min-port=32355 --max-port=65535 --user=605661239@qq.com:g468291375 -r gusheng123.top -L 
+
+0x60585ef606af7af7dc0ae9e543f6f23d 47.94.89.20
+
+
+turnserver -a -o -v -n  --no-dtls --no-tls -u 605661239@qq.com:g468291375 -r gusheng
+
