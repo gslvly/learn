@@ -9,6 +9,7 @@
 	lineWidth:					线宽度，是一个数值。
 
 	
+
 直线：
 	b.beginPath()					开始画线
 	b.moveTo(100,100)				第一个点 100,100
