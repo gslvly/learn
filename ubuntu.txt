@@ -7,7 +7,7 @@ $ tar -xvf ***.tar
 
 
 
-按程序查端口：netstat -atunp
+按程序查端口：netstat -aon |grep xxx   netstat -aon |findstr "xxx"
 查看程序端口 lsof -i:80
 查看程序进程  ps -ef|grep nginx
 所有进程 top

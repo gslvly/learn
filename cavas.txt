@@ -1,4 +1,4 @@
-绘制方块：
+﻿绘制方块：
 	b=a.getContext（‘2d’）:			获取2d绘图环境。a为canvas元素。
 	b.fillRect(L,T,W,H):				填充方块，绘制方块，默认是绝对定位一样。
 	b.strokeRect(L,T,W,H):				带边框的方块。默认是1px
@@ -7,7 +7,9 @@
 	fillStyle:					填充颜色
 	strokeStyle：					边线颜色
 	lineWidth:					线宽度，是一个数值。
+
 	
+
 直线：
 	b.beginPath()					开始画线
 	b.moveTo(100,100)				第一个点 100,100
