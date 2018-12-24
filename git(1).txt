@@ -46,7 +46,6 @@
 	git stash 			临时缓存
 	git stash pop 			拿出缓存
     git push origin :feature_test	删除远程分支
-    本地分支建远程分支
 	git branch --set-upstream-to=origin/fearue_test	
     回滚：	
     	git reset --hard needversion	已经commit,回滚到需要版本，删除所有改动。
@@ -56,3 +55,11 @@
 	 git branch |grep ‘bra‘|xargs git branch -d
     与远程分支同步
 	git remote prune origin
+
+tag
+	git tag 'version' 						创建tag
+	git push origin --tags | version      	push所有tag
+	git tag -d 'version'        			删除本地tag
+	git push origin :refs/tags/version 		删除仓库tag
+	git pull origin tag version 			获取远程tag
+	
