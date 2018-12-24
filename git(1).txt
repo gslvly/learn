@@ -33,14 +33,15 @@
 	
 	
     分支：
-	git branch 			查看所有分支。
-	git branch ts			新建ts分支
-	git checkout master		跳到主机
-	git checkout 分支名		跳到分支		
+	git branch 					查看所有分支。
+	git branch ts				新建ts分支
+	git checkout master			跳到主机
+	git checkout 分支名			 跳到分支		
 	git checkout -b newtest		创新新分支newtest，并跳转到上面，是上面两条的合写。
-	git merge ts			与ts分支合并
-	git merged 			查看已经合并的分支。
-	git branch -d ts		删除ts分支 需要被master合并，然后才能删除。
+	git merge ts				与ts分支合并
+	git merged 					查看已经合并的分支。
+	git branch -D ts			删除ts分支。
+	git push origin -d 
 	git branch --no-merged		查看没有被合并的
     临时储存
 	git stash 			临时缓存
