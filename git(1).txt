@@ -15,14 +15,14 @@
     本地：
 			git status ：										检测当前状态。
 			git diff path (--staged)				检测未add变化（--staged，为add后的文件的变化）。
-			git add：												跟踪文件（新建或者修改的文件需要，可以在status中显示出来，放在暂存区。）
+			git add 												跟踪文件（新建或者修改的文件需要，可以在status中显示出来，放在暂存区。）
 			git reset HEAD filename					去除跟踪修改，与add对应
-			git rm：												删除文件 与add对应。会删掉本地文件几暂存区文件。
+			git rm  												删除文件 与add对应。会删掉本地文件几暂存区文件。
 			git rm --cached t1.txt					去除跟踪，不删除文件(若push，其他人会被删掉文件)。
 			git mv oldName newName					文件重命名。
 			git log -p(--stat) -2						查看log信息。-p为更新差异(--stat更新具体文件)，-2为最近2次的差异。
 			git reflog 											查看commit信息,解决reset后log命令无法查看后面的commit，
-			git commit (-a) -m '修改了xxx' 	提交文件(-a 可以不用add便提交)
+			git commit (-a) -m '修改了xxx' 	 提交文件(-a 可以不用add便提交)
 			git commit --amend 							撤销刚才的commit，重新commit。
     远程：
 			git remote 										查看主机名字
@@ -41,16 +41,15 @@
 			git checkout 分支名			 					跳到分支		
 			git checkout -b newtest						创新新分支newtest，并跳转到上面，是上面两条的合写。
 			git merge ts											与ts分支合并
-			git merged 												查看已经合并的分支。
 			git branch -D ts									删除ts分支。
 			git push origin -d ts							删除远端分支							
-			git branch --no-merged						查看没有被合并的
-
+			git push origin :refs/head/feature        	删除远程分支(：之前为本地分支，：之后为远程分支，本地分支为空，则删除远程分支)
+		
 		临时储存
 			git stash 			临时缓存
 			git stash pop 			拿出缓存
-			git push origin :feature_test	删除远程分支
-			git branch --set-upstream-to=origin/fearue_test	
+			
+
 		回滚：	
 			git checkout . 								没有commit时，清除修改
 			git commit --amend						已经commit，但是需要取消此commit，重新commit
@@ -63,10 +62,10 @@
 		git remote prune origin
 
 tag
-	git tag 'version' 						创建tag
-	git push origin --tags | version      	push所有tag
-	git tag -d 'version'        			删除本地tag
+	git tag 'version' 										创建tag
+	git push origin --tags | version      push所有tag
+	git tag -d 'version'        					删除本地tag
 	git push origin :refs/tags/version 		删除仓库tag
-	git push origin --delete version		上同
-	git pull origin tag version 			获取远程tag
+	git push origin --delete version			上同
+	git pull origin tagVersion 						获取远程tag
 	

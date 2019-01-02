@@ -125,7 +125,7 @@ javascript预解析：遇到<script>标签，先将标签内所有的var和funct
 			eval方法：使字符串变为javascript代码
 				eval（"var a= function(){}"）:本来""里面是字符串，使用eval方法，使其变为了可以使用的函数。
 			属性：undefined、NaN、Object、Array、Function等。
-		   Math对象
+		  Math对象
 			Math.pow（a，b）a的b次方。注意大小写
 			Math.sqrt(n):开方。
 			Math.round（b）四舍五入
@@ -154,7 +154,7 @@ javascript预解析：遇到<script>标签，先将标签内所有的var和funct
 			      b.unshift（）：在前端添加元素。
 			排序方法：
 			      b.reverse（）:逆向排序。
-			      b.sort():如果没有使用参数，按字符串首字母从小到大排序，如果要比较数字得传一个参数（函数 sortNumber不调用），function sortNumber（{return a-b}）
+			      b.sort():如果没有使用参数，按字符串首字母从小到大排序，回调函数（a,b）=>xxx，如果返回正数，则两个相对位置不变，返回负数，交换数据。a为后面的一个数，b为前面的一个数，与reduce相反
 			数组处理方法：
 				1、box2=box.concat（"sd"）:在原有数组box最后一个元素后面添加一个元素“sd”，变为新的数组box2，不修改box值。
 				2、box2=box.slice(2,5):获取[2，5)的元素组成新的数组(下标）（2）则从第三个元素到最后一个元素。不修改box值
