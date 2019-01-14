@@ -21,6 +21,7 @@
 			git rm --cached t1.txt					去除跟踪，不删除文件(若push，其他人会被删掉文件)。
 			git mv oldName newName					文件重命名。
 			git log -p(--stat) -2						查看log信息。-p为更新差异(--stat更新具体文件)，-2为最近2次的差异。
+			git log --graph --all --oneline 查看分支合并情况
 			git reflog 											查看commit信息,解决reset后log命令无法查看后面的commit，
 			git commit (-a) -m '修改了xxx' 	 提交文件(-a 可以不用add便提交)
 			git commit --amend 							撤销刚才的commit，重新commit。

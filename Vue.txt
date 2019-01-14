@@ -276,10 +276,11 @@ html中
 		</template>
 		slot:作用域卡槽：子组件标签放在父组件模板中，但是msg都只能是获取父组件的msg，父组件的模板作用域是父组件。
 		     改变作用域：
-				父组件模板：template:`<div><bbb><template slot-scope='{dd}'><h2>我是父组件信息<br>{{dd}}</h2></template></bbb></div>`template也可命名，与slot对应。
-				子组件模板：template:`<div><slot dd='我是子组件信息'></slot></div>`
-				子组件for循环：<div><ul><li><slot v-for='an in msg' name='aa' :dd='an' ></slot></li></ul></div> :dd能给父组传值,值为循环后的{aa: aa}
-				slot-scope 是拿的所有属性
+				父组件模板：<bbb><template slot-scope='{dd}'>{{dd}}</template></bbb>
+				子组件模板：<div><slot dd='我是子组件信息'></slot></div>
+				子组件for循环：<ul><li><slot v-for='an in msg' name='aa' :dd='an' ></slot></li></ul>
+				 :dd能给父组传值,值为循环后的{aa: aa}
+				slot-scope 是获取所有属性
 
 		keep-alive:	<keep-alive><component :is="currentView"><!-- 非活动组件将被缓存！ --></component></keep-alive>
 		异步加载：	components:{aaa(c){require(['./A.vue'],c)}}//异步加载 这儿挂的aaa是个函数，必须传个参数，require格式不能变，第二个调用c函数。c函数不必定义，第二次也可以写匿名函数。

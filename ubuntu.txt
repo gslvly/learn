@@ -19,7 +19,7 @@ $ tar -xvf ***.tar
 window 传送文件
  子系统 /mnt 为电脑 
  scp t.txt dragon@192.168.253.137:~/  传文件夹 加参数 -r
- scp -i sshkeyfile -r dir root/ip:~/path 
+ scp -i sshkeyfile -r dir root@ip:~/path 
 
 ps 命令
 
@@ -38,6 +38,7 @@ ps 命令
 
 
 .ssh/authorized_keys
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.19.19
 
-watch -n 1 ‘ps -aux --sort -pmem,pcpu’ 结合cpu 和 内存查进程，每秒一次刷新。
+watch -n 1 'ps -aux --sort -pmem,pcpu' 结合cpu 和 内存查进程，每秒一次刷新。
 
