@@ -23,6 +23,7 @@ search 镜像名                                          在官网搜索此镜�
 docker port adoring_stonebraker 5000                  查看容器adoring_stonebraker 5000端口绑定的外部端口
 exec -it contenerid  /etc/bash                        进入容器
 
+
 docker start                                          启动一个或多个已经被停止的容器
 docker stop                                           停止一个运行中的容器
 docker restart                                        重启容器
@@ -31,8 +32,11 @@ docker pause db01                                     暂停容器中所有的�
 docker unpause  db01                                  恢复
 docker create                                         只创建 不运行容器 与run命令相同
 docker logs -f mynginx                                列出log
+docker tag imageid imagename                          镜像重命名
 
 docker 构建
   docker build -t 镜像名 -f dockerfile .               构建
   docker save -o 出口路径 镜像名                        保存
   docker load -i 镜像文件                               加载
+  docker export contener                               导出容器
+  docker import xxx                                    导入容器
