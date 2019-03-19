@@ -114,7 +114,8 @@ javascript预解析：遇到<script>标签，先将标签内所有的var和funct
 		原型链：
 			要求：原型链是指A对象需要获取B对象的属性和方法，但A对象可以扩充方法及属性。一般做法将超类型实例化后的地址给子类型的原型。不能使子类型的原型constructor属性发生变化。原型中内容不能与实例中内容重复。
 			最好的实现方法：由寄生组合式继承实现。
-			
+			class 中 super指向父类的原型，但是this指向子类 ，含有双继承，A.__proto__ = B.prototype;A.prototype.__proto__ = B.__proto__
+
 		ECMAscript内置对象:Global：web端使用window实例化；Math
 		   Global内置属性与方法：
 			URI方法：将地址转换为浏览器看得懂的编码。比如有中文的地址。
