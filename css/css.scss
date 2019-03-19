@@ -11,3 +11,7 @@
     width: 200px;
   }
 } 
+//.t1:nth-of-type(n) 标签名相同的第n个元素，若class="t1" 则选中
+//.t1:only-of-type  只有唯一一个相同标签名元素,且class="t1"
+//.t1:only-child    只有一个子元素，且class="t1"
+//.t1:nth-child(n)  第n个子元素，class="t1"

@@ -2,11 +2,11 @@
 代码中间用；或者换行。
 
 script:
-<script scr=""> 引入外js文件时标签中不能写东西,要写东西需要重新建一个script标签。
-Async： 同时下载外部js文件，下载完成后立即执行。<script scr="" async="async"></script>
-defer：同时下载外部js文件，下载完成后最后执行。
-Sync： 依次运行程序。
-DOMContentLoaded ：DOM加载事件，可以加载js。等标签加载完，js文档就执行了。onload是标签，视屏都加载完再执行。
+	<script scr=""> 引入外js文件时标签中不能写东西,要写东西需要重新建一个script标签。
+	Async： 同时下载外部js文件，下载完成后立即执行。<script scr="" async="async"></script>
+	defer：同时下载外部js文件，下载完成后最后执行。
+	Sync： 依次运行程序。
+	DOMContentLoaded ：DOM加载事件，可以加载js。等标签加载完，js文档就执行了。onload是标签，视屏都加载完再执行。
 
 javascript预解析：遇到<script>标签，先将标签内所有的var和function和参数提前（函数在最前面），但赋值不回提前。比如var a=8→var a：；a=8，然后再将fuction标签内的var a提前。全局变量与局部变量都有a，他们2个在内存中占用2个位置，是不相同的。function中没有定义a，但关于a的函数，会先在当前作用域下寻找a，若没有找到，会在全局变量中找。
 		就算写在function中的变量，如果未用var 则变为全局变量。var a=b=c=9，b、c全部变量，a局部变量。
