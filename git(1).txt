@@ -30,7 +30,8 @@
 			git remote -v 								查看主机网址
 			git remote add 主机名 url			添加主机名
 			git remote show 主机名				查看主机详细信息。
-			git remote rename 原主机名 		新主机名
+			git remote rename 原主机名 			新主机名
+			git remote set-url 主机名 url			更换仓库
     更新：
 			git fetch 主机名 分支名				取回远程主机 在分支上的更新。不写分支名为所有更新。不合并
 			git pull  						   			拉取分支合并

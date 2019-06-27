@@ -15,6 +15,7 @@
   grid-auto-rows: 2px; // 上同，由于自容器设置的grid-row超出父容器所创建的template-rows时，就会产生
   grid-auto-flow: row; // row | column | row dense | column dense | 没有设置位置的子容器，按设置方向 自动填充在剩余的网格内。dense 先填小的网格。
   grid:10px 20px; // none | subgrid | rows / columns | auto-flow
+  grid-template-columns: repeat(3, minmax(200px, 1fr)) // 重复3次，每一个最小值为200px 最大值为1fr。重复次数可以是auto-fit(自动重复次数，根据总宽度来计算可重复几次)，1fr也可用百分比,min-content(最小宽度，根据内容换行算),max-content(不换号算),
 }
 .子容器 {
   grid-row: 1 / span 2; // 开始线/ 占2格
