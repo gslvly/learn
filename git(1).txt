@@ -1,5 +1,4 @@
-﻿地址规则：https://仓库名/
-全局配置：
+﻿全局配置：
 	名字	：git config --global user.name 'gs'
 	email	：git config --global user.email '605661239@qq.com'
 	查看配置：git config --list
@@ -9,11 +8,10 @@
 	已修改（modified） :已修改表示修改了某个文件，但还没有提交保存；
 	已暂存（staged）   :已暂存表示把已修改的文件放在下次提交时要保存的清单中。
 克隆：
-	git clone  https://github.com/gslvly/gslvly.github.io.git app4 app4是自己建的空文件夹 克隆放在里面，之后需要到这个新目录下运行。
-	git clone -o name url app4 	可以备注远程主机名字（非自己的主机名，是别人的，自己的用remote -add添加） 如果不写为origin
+	git clone 
 功能：
     本地：
-			git status ：										检测当前状态。
+			git status 									   检测当前状态。
 			git diff path (--staged)				检测未add变化（--staged，为add后的文件的变化）。
 			git add 												跟踪文件（新建或者修改的文件需要，可以在status中显示出来，放在暂存区。）
 			git reset HEAD filename					去除跟踪修改，与add对应

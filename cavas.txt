@@ -28,7 +28,7 @@
 	ctx.fillRect(0,0,150,37.5)  不需要ctx.fill()
 
 赛贝尔曲线:
-        二次: quadraticCurveTo(cp1x, cp1y, x, y) 控制点，结束点
+  二次: quadraticCurveTo(cp1x, cp1y, x, y) 控制点，结束点
 	三次: bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) 2个控制点，一个结束点
 
 Path2D:
