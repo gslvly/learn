@@ -1,17 +1,24 @@
-
-.div{
+.div {
   width: fit-content; // 宽度确定为内容内容宽度。
 }
-.父容器{
+.父容器 {
   width: min-content; // 取div1作为父元素的宽度。
-  .div1{
+  .div1 {
     width: 100px;
   }
-  .div2{
+  .div2 {
     width: 200px;
   }
-} 
+}
 //.t1:nth-of-type(n) 标签名相同的第n个元素，若class="t1" 则选中
 //.t1:only-of-type  只有唯一一个相同标签名元素,且class="t1"
 //.t1:only-child    只有一个子元素，且class="t1"
 //.t1:nth-child(n)  第n个子元素，class="t1"
+div {
+  background: linear-gradient(20deg, red 0 3px, orange 10px);
+  // 渐变背景, 与竖直线右侧的角度为20deg（竖直方向为0度，顺时针旋转20度）为渐变线, red 的起为0px, 0-3pxred不渐变位置，3-10px为red到origin的渐变，10到最终为origine 不渐变。
+  // 颜色位置为绝对位置，非相对前一个的位置，如果位置相对于前一个较小，则自动纠错到前一个结束位置。最后一个颜色不写位置默认100%
+  // linear-gradient 具有url()相似特性，可以使用background-size确定linear-gradient确定大小，并且默认了repeat属性.
+  // 所以，可以由此做条纹，可以直接添加background-size大小为liner-gradient的大小实现条纹。、
+  // repeating-linear-gradient可以省略background-size属性。
+}
