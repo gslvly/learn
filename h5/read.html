@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var c
+      let readStream = new ReadableStream({
+        async start(controller) {
+          c = controller
+          for (let i = 0; i < 4; i++) {
+          //   await new Promise(r => setTimeout(r, 600))
+          //   let p = []
+          //   for (let i = 0; i < 10; i++) {
+          //     p.push(Math.floor(Math.random() * 250))
+          //   }
+            controller.enqueue(new Uint8Array([i]))
+          }
+          controller.close()
+        }
+      })
+      console.log(readStream)
+      let res = new Response(readStream)
+      // console.log(res.blob())
+      res.blob().then(res => {
+        console.log(res.arrayBuffer())
+      })
+      // 如果getReader读取，则被琐住，无法再运行res.blob()
+      // async function read(readStream) {
+          // let r = readStream.getReader()
+        
+        // while (true) {
+        //   let { done, value } = await r.read()
+        //   console.log('read', done, value)
+        //   if (done) {
+        //     // 
+          
+        //     // console.log('time',readStream,res, res.blob())
+           
+        //     return
+        //   }
+        // }
+      // }
+      // read(readStream)
+    </script>
+  </body>
+</html>
