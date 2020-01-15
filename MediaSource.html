@@ -19,6 +19,7 @@
     var mediaSource = new MediaSource();
     video.src = URL.createObjectURL(mediaSource)
     // 转换mp4为fmp4
+    
     // ffmpeg -i video.mp4 -movflags empty_moov+default_base_moof+frag_keyframe video-fragmented.mp4
     mediaSource.onsourceopen = function(e) {
       console.log(e)
