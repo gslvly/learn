@@ -46,4 +46,10 @@ sessionStorage  与 localstorage 与 cookie区别
   sessionStorage 只在一个tab 中存在，localstorage 和cookie 可以跨tab
 
 
+关键字
+MediaRecorder 
+navigator.mediaDevices.getDisplayMedia
+AudioContext
+
+
 
