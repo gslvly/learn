@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    video{
+      width: 300px;
+      height: 400px;
+    }
+  </style>
+  <video   controls autoplay ></video>
+  <script>
+    const video = document.querySelector('video')
+    var mediaSource = new MediaSource();
+    video.src = URL.createObjectURL(mediaSource)
+    // 转换mp4为fmp4
+    
+    // ffmpeg -i video.mp4 -movflags empty_moov+default_base_moof+frag_keyframe video-fragmented.mp4
+    mediaSource.onsourceopen = function(e) {
+      console.log(e)
+      var sourceBuffer = mediaSource.addSourceBuffer('video/mp4; codecs="avc1.64001e, mp4a.40.2"')
+      video.onloadedmetadata = () => {
+        video.play()
+      }
+      fetch('./f1.mp4').then(res => {
+        return res.body
+        // return res.arrayBuffer()
+      })
+      // .then(res => {
+      //   console.log(res)
+      //   sourceBuffer.appendBuffer(res)
+
+      // })
+      .then(async body => {
+        r = body.getReader()
+        console.log(r)
+        let b = 100000
+        while(true) {
+          const  {done, value} = await r.read()
+          console.log('val', value, done)
+          if(value) {
+            let  a = value
+            while(a.byteLength) {
+              sourceBuffer.appendBuffer(a.subarray(0,b))
+              await new Promise(r => {
+                setTimeout(r, 100)
+              })
+              console.log('fasdfafs')
+              console.log(a.byteLength)
+              a = a.subarray(b)
+            }
+           
+           
+
+          } else {
+            mediaSource.endOfStream()
+            return
+          }
+          
+        }
+        
+       
+     
+      })
+    }
+  </script>
+</body>
+</html>
