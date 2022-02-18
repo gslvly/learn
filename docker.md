@@ -41,4 +41,4 @@ docker 构建
   docker load -i 镜像文件                               加载镜像
   docker export contener > 路径                         导出容器
   docker import xxx  name:tag                           导入容器
-  或者cat xxx |docker import - name:tag
+  或者cat xxx | docker import - name:tag

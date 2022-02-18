@@ -22,3 +22,7 @@ div {
   // 所以，可以由此做条纹，可以直接添加background-size大小为liner-gradient的大小实现条纹。、
   // repeating-linear-gradient可以省略background-size属性。
 }
+
+// 滚动到元素，类似轮播图
+
+scroll-snap-align: start;

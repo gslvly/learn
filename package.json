@@ -1,9 +1,0 @@
-{
-  "devDependencies": {
-    "jsonwebtoken": "^8.2.1",
-    "mongoose": "^5.0.17"
-  },
-  "dependencies": {
-    "js-base64": "^2.4.5"
-  }
-}
