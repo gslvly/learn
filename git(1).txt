@@ -53,7 +53,7 @@
 			
 		压缩commit
 			git rebase -i start end  从上到下依次为最早提交到最晚提交。s commit message， f删除commit。
-				第一个commit只能是p。保存后出现分支丢失，需要checkout -b 创建新分支。再次合并老分支必须使用 git merge xx --squash
+				第一个commit只能是p。保存后出现分支丢失，需要checkout -b 创建新分支。再次合并老分支必须使用 git merge xx --squash,
 			
 
 
