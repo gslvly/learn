@@ -26,3 +26,12 @@ div {
 // 滚动到元素，类似轮播图
 
 scroll-snap-align: start;
+
+table{
+  table-layout: fixed;
+  tr {
+    td{
+      width: 100
+    }
+  }
+}

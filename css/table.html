@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      fixed布局时，如果不设置table:100%,则a 为 x/ (x+100+100+200) = 0.2 ,x=100。<br>
+      如果设置了table 100%<br>
+        1. 如果足够大，那么先满足a，其他按照width评分<br>
+        2. 如果不够大，先满足绝对宽度，再满足a<br>
+    </div>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+      }
+      .a {
+        width: 20%;
+        background-color: blueviolet;
+      }
+      .b {
+        width: 100px;
+        background-color: lightblue;
+      }
+      .c {
+        width: 100px;
+        background-color: brown;
+      }
+      .d {
+        background-color: olivedrab;
+        width: 200px;
+      }
+    </style>
+    <table>
+      <tr>
+        <th class="a">aaaaaaaaa</th>
+        <th class="b">2</th>
+        <th class="c">3</th>
+        <th class="d">4</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+    </table>
+  </body>
+</html>
