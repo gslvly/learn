@@ -1,0 +1,16 @@
+子模块
+添加子模块： git submodule add git@xxx.com/git_child.git mymodule（文件夹名字）
+拉取：
+1. 拉取父级项目及其所有子项目 git clone  git@xxx.com/parent.git --recursive 
+2. 分步进行：
+	2.1 git clone git@xxx/parent.git
+	2.2 cd parent && git submodule init && git submodule update child(子模块名) 或者所有 --recursive 
+提交
+在子模块中提交代码。但是父模块中也会显示有改动
+
+总结：父级中commit代码不会包含子模块的内容。子模块与模块分开管理。唯一区别是第一次拉去子模块的时，需要git submodule init 和submodule update child操作
+
+submodule workspace
+monorepo 
+
+npm run test --workspace=a 相当于 cd packages/a && npm run test
